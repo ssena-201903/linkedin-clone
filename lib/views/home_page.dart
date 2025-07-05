@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,9 +12,44 @@ class _HomePageState extends State<HomePage> {
   // created current index for bottom navbar
   int _currentIndex = 0;
 
+  // path string list for svg icon paths
+  final List<String> _passiceIconPaths = [
+    "assets/icons/home.png",
+    "assets/icons/network.png",
+    "assets/icons/make_post.png",
+    "assets/icons/notifications.png",
+    "assets/icons/jobs.png",
+  ];
+
+  // path string list for selected svg icon paths
+  final List<String> _activeIconPaths = [
+    "assets/icons/home_selected.png",
+    "assets/icons/network_selected.png",
+    "assets/icons/make_post.png",
+    "assets/icons/notifications_selected.png",
+    "assets/icons/jobs_selected.png",
+  ];
+
+  // created private method for building dynamic icon
+  Widget _buildIcon(int index){
+    // if current index equals to coming index play active icon, otherwise play passive icon
+    String path = _currentIndex == index
+    ? _activeIconPaths[index]
+    : _passiceIconPaths[index];
+
+    // return svg icon
+    return Image.asset(
+      path,
+      width: 24,
+      height: 24,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // added color to background
+      backgroundColor: Color(0xffE8E5DD),
       // created custom scrolview and will be created sliver appbar and sliverlist inside it.
       body: CustomScrollView(
         slivers: [
@@ -24,8 +60,8 @@ class _HomePageState extends State<HomePage> {
             title: Row(
               children: [
                 // created circle avatar inside sliver appbar
-                CircleAvatar(backgroundImage: AssetImage('assets/icons/profile_picture_placeholder.png'), radius: 16,),
-                SizedBox(width: 10,),
+                CircleAvatar(backgroundImage: AssetImage('assets/images/profile_picture_placeholder.png'), radius: 16,),
+                SizedBox(width: 16,),
                 // created "arama yap" textfield
                 Expanded(
                   // put the textfield inside a container because of giving height.
@@ -33,26 +69,30 @@ class _HomePageState extends State<HomePage> {
                     height: 35,
                     child: TextField(
                       decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.search_rounded, size: 20,),
+                        prefixIcon: SizedBox(
+                          height: 12,
+                          width: 12,
+                          child: Icon(Icons.search),
+                        ),
                         contentPadding: EdgeInsets.zero,
                         filled: true,
                         fillColor: Color(0xffEEF3F7),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(4),
-                          borderSide: BorderSide.none
+                          borderSide: BorderSide.none,
                         ),
                         hintText: "Arama Yap"
                       ),
                     ),
                   ),
                 ),
-                SizedBox(width: 20,),
+                SizedBox(width: 16,),
                 // message icon to go message page
                 SizedBox(
-                  height: 24,
-                  width: 24,
+                  height: 26,
+                  width: 26,
                   child: Image.asset("assets/icons/message.png"),
-                )
+                ),
               ],
             ),
           ),
@@ -64,64 +104,22 @@ class _HomePageState extends State<HomePage> {
         selectedItemColor: Colors.black,
         currentIndex: _currentIndex,
         type: BottomNavigationBarType.fixed,
+        selectedFontSize: 12,
+        unselectedFontSize: 12,
         onTap: (value) {
           // to change current page actively, used setState method
           setState(() {
             _currentIndex = value;
           });
         },
-        // initialized bottom navbar items
-        items: [
-          
-        ]
+        // initialized bottom navbar items by using list generate because we need to create dynamic bottom navbar items
+        items: List.generate(_activeIconPaths.length, (index){
+          return BottomNavigationBarItem(
+            icon: _buildIcon(index), 
+            label: ["Ana Sayfa", "Profesyonel Ağım", "Yayınla", "Bildirimler", "İş İlanları"][index] );
+        })
       ),
     );
   }
 }
 
-// Scaffold(
-//       appBar: AppBar(
-//         backgroundColor: Colors.white,
-//         leading: Padding(
-//           padding: const EdgeInsets.only(left: 20),
-//           child: SizedBox(
-//             height: 10,
-//             child: Image.asset("assets/icons/profile_picture_placeholder.png"),
-//           ),
-//         ),
-//         title: Row(
-//           children: [
-//             Expanded(
-//               child: Container(
-//                 padding: EdgeInsets.symmetric(horizontal: 10),
-//                 alignment: Alignment.centerLeft,
-//                 height: 30,
-//                 decoration: BoxDecoration(
-//                   color: const Color.fromARGB(255, 241, 241, 241),
-//                   borderRadius: BorderRadius.circular(4)
-//                 ),
-//                 child: Row(
-//                   children: [
-//                     Icon(Icons.search, size: 20,),
-//                     SizedBox(width: 10,),
-//                     Text("Arama Yap",style: TextStyle(
-//                       color: Colors.black38,
-//                       fontSize: 14,
-//                     ),),
-//                   ],
-//                 )
-//               ),
-//             ),
-//           ],
-//         ),
-//         actions: [
-//           SizedBox(
-//             height: 24,
-//             child: Image.asset("assets/icons/message.png"),
-//           )
-//         ],
-//       ),
-//       body: ListView(
-        
-//       ),
-//     );
