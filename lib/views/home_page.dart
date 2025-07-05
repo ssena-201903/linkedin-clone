@@ -24,9 +24,30 @@ class _HomePageState extends State<HomePage> {
                 CircleAvatar(backgroundImage: AssetImage('assets/icons/profile_picture_placeholder.png'), radius: 16,),
                 SizedBox(width: 10,),
                 // arama yap textfieldı oluşturuldu.
-                Container(
-
+                Expanded(
+                  child: Container(
+                    height: 35,
+                    child: TextField(
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.search_rounded, size: 20,),
+                        contentPadding: EdgeInsets.zero,
+                        filled: true,
+                        fillColor: Color(0xffEEF3F7),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(4),
+                          borderSide: BorderSide.none
+                        ),
+                        hintText: "Arama Yap"
+                      ),
+                    ),
+                  ),
                 ),
+                SizedBox(width: 20,),
+                SizedBox(
+                  height: 24,
+                  width: 24,
+                  child: Image.asset("assets/icons/message.png"),
+                )
               ],
             ),
           ),
