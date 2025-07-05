@@ -8,23 +8,27 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  // created current index for bottom navbar
+  int _currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // custom scrollview tanımalandı içinde sliver appbar ve sliver list olacak.
+      // created custom scrolview and will be created sliver appbar and sliverlist inside it.
       body: CustomScrollView(
         slivers: [
-          // sliver appbar oluşturuldu.
+          // sliver appbar
           SliverAppBar(
             backgroundColor: Colors.white,
             toolbarHeight: 50,
             title: Row(
               children: [
-                // appbardaki circle avatar oluşturuldu.
+                // created circle avatar inside sliver appbar
                 CircleAvatar(backgroundImage: AssetImage('assets/icons/profile_picture_placeholder.png'), radius: 16,),
                 SizedBox(width: 10,),
-                // arama yap textfieldı oluşturuldu.
+                // created "arama yap" textfield
                 Expanded(
+                  // put the textfield inside a container because of giving height.
                   child: Container(
                     height: 35,
                     child: TextField(
@@ -43,6 +47,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 SizedBox(width: 20,),
+                // message icon to go message page
                 SizedBox(
                   height: 24,
                   width: 24,
@@ -52,6 +57,23 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ],
+      ),
+      // created bottom navigation bar
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.white,
+        selectedItemColor: Colors.black,
+        currentIndex: _currentIndex,
+        type: BottomNavigationBarType.fixed,
+        onTap: (value) {
+          // to change current page actively, used setState method
+          setState(() {
+            _currentIndex = value;
+          });
+        },
+        // initialized bottom navbar items
+        items: [
+          
+        ]
       ),
     );
   }
