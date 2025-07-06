@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:linkedin_clone/views/home_page.dart';
+import 'package:linkedin_clone/layout/main_shell.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
           )
         )
       ),
-      home: HomePage(),
+      home: MainShell(),
     );
   }
 }
