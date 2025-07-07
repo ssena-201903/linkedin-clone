@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:linkedin_clone/views/home/post_card.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -59,8 +60,8 @@ class _HomePageState extends State<HomePage> {
           SliverToBoxAdapter(
           child: Column(
             children: [
-              SizedBox(height: 20),
-              Text("İçerikler buraya"),
+              SizedBox(height: 8),
+              PostCard()
             ],
           ),
         )
