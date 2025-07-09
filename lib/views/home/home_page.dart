@@ -60,8 +60,9 @@ class _HomePageState extends State<HomePage> {
           SliverToBoxAdapter(
           child: Column(
             children: [
-              SizedBox(height: 8),
-              PostCard()
+              PostCard(),
+              PostCard(),
+              PostCard(),
             ],
           ),
         )
