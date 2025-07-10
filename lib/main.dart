@@ -23,6 +23,10 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+          backgroundColor: Color(0xff0966C3),
+          foregroundColor: Colors.white
+        )
       ),
       home: MessagesPage(),
     );
