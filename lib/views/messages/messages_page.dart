@@ -18,9 +18,7 @@ class _MessagesPageState extends State<MessagesPage> {
         title: Row(
           children: [
             // created circle avatar inside sliver appbar
-            Icon(Icons.arrow_back),
-            SizedBox(width: 16),
-            // created "arama yap" textfield
+            // created "mesajlarda ara" textfield
             Expanded(
               // put the textfield inside a container because of giving height.
               child: Container(
@@ -50,39 +48,41 @@ class _MessagesPageState extends State<MessagesPage> {
           ],
         ),
       ),
-      body: Column(
-        children: [
-          TopMessageContainer(),
-          // message row
-          MyMessageContainer(
-            isRead: true, 
-            profilePicture: "assets/images/pp_woman1.png", 
-            messageContent: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", date: "Pzr",
-            senderName: "Ayşe Kaya",
-          ),
-          MyDivider(),
-          MyMessageContainer(
-            isRead: true, 
-            profilePicture: "assets/images/pp_man1.png", 
-            messageContent: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", date: "24 Haz 2025",
-            senderName: "Selim Güven",
-          ),
-          MyDivider(),
-          MyMessageContainer(
-            isRead: false, 
-            profilePicture: "assets/images/pp_woman2.png", 
-            messageContent: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", date: "20 May 2025",
-            senderName: "Nazlı Kuyu",
-          ),
-          MyDivider(),
-          MyMessageContainer(
-            isRead: true, 
-            profilePicture: "assets/images/pp_woman3.png", 
-            messageContent: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", date: "20 May 2025",
-            senderName: "Leyla Koşar",
-          ),
-          MyDivider(),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            TopMessageContainer(),
+            // message row
+            MyMessageContainer(
+              isRead: true, 
+              profilePicture: "assets/images/pp_woman1.png", 
+              messageContent: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", date: "Pzr",
+              senderName: "Ayşe Kaya",
+            ),
+            MyDivider(),
+            MyMessageContainer(
+              isRead: true, 
+              profilePicture: "assets/images/pp_man1.png", 
+              messageContent: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", date: "24 Haz 2025",
+              senderName: "Selim Güven",
+            ),
+            MyDivider(),
+            MyMessageContainer(
+              isRead: false, 
+              profilePicture: "assets/images/pp_woman2.png", 
+              messageContent: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", date: "20 May 2025",
+              senderName: "Nazlı Kuyu",
+            ),
+            MyDivider(),
+            MyMessageContainer(
+              isRead: true, 
+              profilePicture: "assets/images/pp_woman3.png", 
+              messageContent: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", date: "20 May 2025",
+              senderName: "Leyla Koşar",
+            ),
+            MyDivider(),
+          ],
+        ),
       ),
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 40, right: 20),

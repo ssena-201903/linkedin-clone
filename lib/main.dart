@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:linkedin_clone/layout/main_shell.dart';
-import 'package:linkedin_clone/views/home/home_page.dart';
-import 'package:linkedin_clone/views/messages/messages_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,7 +26,7 @@ class MyApp extends StatelessWidget {
           foregroundColor: Colors.white
         )
       ),
-      home: MessagesPage(),
+      home: MainShell(),
     );
   }
 }

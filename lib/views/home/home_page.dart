@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:linkedin_clone/views/home/post_card.dart';
+import 'package:linkedin_clone/views/messages/messages_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -48,10 +49,15 @@ class _HomePageState extends State<HomePage> {
                 ),
                 SizedBox(width: 16,),
                 // message icon to go message page
-                SizedBox(
-                  height: 26,
-                  width: 26,
-                  child: Image.asset("assets/icons/message.png"),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => MessagesPage()));
+                  },
+                  child: SizedBox(
+                    height: 26,
+                    width: 26,
+                    child: Image.asset("assets/icons/message.png"),
+                  ),
                 ),
               ],
             ),
@@ -60,9 +66,8 @@ class _HomePageState extends State<HomePage> {
           SliverToBoxAdapter(
           child: Column(
             children: [
-              PostCard(),
-              PostCard(),
-              PostCard(),
+              PostCard(companyLogo: "assets/icons/hyundai_logo.png", companyName: "Hyundai", postImage: "assets/images/post_image2.png", followerCount: "3.2M", minute: "30", commentCount: "11", shareCount: "6"),
+              PostCard(companyLogo: "assets/icons/netgo_logo.png", companyName: "Netgo", postImage: "assets/images/post_image4.png", followerCount: "200.120", minute: "7", commentCount: "120", shareCount: "8")
             ],
           ),
         )
