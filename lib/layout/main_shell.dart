@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:linkedin_clone/constants/constants.dart';
 import 'package:linkedin_clone/views/home/home_page.dart';
 import 'package:linkedin_clone/views/jobs/jobs_page.dart';
 import 'package:linkedin_clone/views/network/network_page.dart';
@@ -87,7 +88,7 @@ class _MainShellState extends State<MainShell> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffE9E6DE),
+      backgroundColor: Constants.bgPageColor,
       body: _pages[_selectedIndex],
       // created bottom navigation bar
       bottomNavigationBar: Visibility(

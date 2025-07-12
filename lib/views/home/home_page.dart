@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:linkedin_clone/constants/constants.dart';
 import 'package:linkedin_clone/views/home/post_card.dart';
 import 'package:linkedin_clone/views/messages/messages_page.dart';
 
@@ -17,23 +18,23 @@ class _HomePageState extends State<HomePage> {
         slivers: [
           // sliver appbar
           SliverAppBar(
-            backgroundColor: Colors.white,
-            toolbarHeight: 50,
+            backgroundColor: Constants.mainWhiteTone,
+            toolbarHeight: Constants.sliverAppbarHeight,
             title: Row(
               children: [
                 // created circle avatar inside sliver appbar
-                CircleAvatar(backgroundImage: AssetImage('assets/images/profile_picture_placeholder.png'), radius: 16,),
-                SizedBox(width: 16,),
+                CircleAvatar(backgroundImage: AssetImage('assets/images/profile_picture_placeholder.png'), radius: Constants.appbarCircleAvatarRadius,),
+                SizedBox(width: Constants.appbarSizedBox,),
                 // created "arama yap" textfield
                 Expanded(
                   // put the textfield inside a container because of giving height.
                   child: Container(
-                    height: 35,
+                    height: Constants.appbarSearchHeight,
                     child: TextField(
                       decoration: InputDecoration(
                         prefixIcon: SizedBox(
-                          height: 12,
-                          width: 12,
+                          height: Constants.appbarSearchIconSize,
+                          width: Constants.appbarSearchIconSize,
                           child: Icon(Icons.search),
                         ),
                         contentPadding: EdgeInsets.zero,
@@ -48,15 +49,15 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
-                SizedBox(width: 16,),
+                SizedBox(width: Constants.appbarSizedBox,),
                 // message icon to go message page
                 GestureDetector(
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => MessagesPage()));
                   },
                   child: SizedBox(
-                    height: 26,
-                    width: 26,
+                    height: Constants.appbarIconSize,
+                    width: Constants.appbarIconSize,
                     child: Image.asset("assets/icons/message.png"),
                   ),
                 ),
