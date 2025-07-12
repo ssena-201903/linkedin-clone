@@ -7,7 +7,16 @@ class Constants {
   static final mainWhiteTone = Colors.white;
   static final bgPageColor = Color(0xffE9E6DE);
   static final mainGreenColor = Color(0xff017550);
+  static final mainLightGrey = Color.fromARGB(255, 131, 131, 131);
   static final mainDarkGreyColor = const Color.fromARGB(255, 104, 104, 104);
+  static final mainBlackColor = Color(0xff181818); 
+  static final mainLigthGreenColor = Color(0xffD8E9CF);
+
+  // fontsizes
+  static final double fontSizeTitle = 20;
+  static final double fontSizeSubTitle = 16;
+  static final double fontSizeMidTitle = 14;
+  static final double fontSizeMiniTitle = 12;
 
   // appbar
   static final appbarIconColor = mainDarkGreyColor;
@@ -45,5 +54,8 @@ class Constants {
   static final verticalDividerColor = Colors.black12;
 
   // horizontal dividers
-  static final horizontalDividerColor = const Color.fromARGB(24, 0, 0, 0);
+  static final horizontalDividerColor = const Color.fromARGB(15, 0, 0, 0);
+
+  //padding
+  static final EdgeInsets paddingCard = EdgeInsets.all(10);
 }
