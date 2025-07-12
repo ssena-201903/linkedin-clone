@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:linkedin_clone/constants/constants.dart';
+import 'package:linkedin_clone/helpers/data_helper.dart';
+import 'package:linkedin_clone/models/person.dart';
 import 'package:linkedin_clone/views/my_text.dart';
+import 'package:linkedin_clone/views/network/person_request_card.dart';
 
 class NetworkBuyut extends StatefulWidget {
   const NetworkBuyut({super.key});
@@ -10,6 +13,22 @@ class NetworkBuyut extends StatefulWidget {
 }
 
 class _NetworkBuyutState extends State<NetworkBuyut> {
+  // to get person data from data helper
+  late final List<Person> allPersons;
+  // visible person list after some card is closed
+  late final List<Person> visiblePersons;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // initializing person list
+    allPersons = DataHelper.getPersons();
+    // get copy from all persons list
+    visiblePersons = List.from(allPersons);
+
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,57 +60,61 @@ class _NetworkBuyutState extends State<NetworkBuyut> {
           ),
           SizedBox(height: 8),
           // games horizontal listview gelecek
-          Container(
-            padding: Constants.paddingCard,
-            decoration: BoxDecoration(color: Constants.mainWhiteTone),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // games title
-                _buildTitleText("Günlük oyunlar aracılığıyla iletişimde kalın"),
-                SizedBox(height: 10),
-                // games horizontal listview
-                SizedBox(
-                  height: 60,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      // games single container
-                      _buildSingleGameContainer(
-                        "assets/icons/queens_logo.png",
-                        "Queens",
-                        "438",
-                        "2 Tem, Çarşamba",
-                        "Çöz",
-                      ),
-                      SizedBox(width: 10),
-                      _buildSingleGameContainer(
-                        "assets/icons/tango_logo.png",
-                        "Tango",
-                        "278",
-                        "2 Tem, Çarşamba",
-                        "Çöz",
-                      ),
-                      SizedBox(width: 10),
-                      _buildSingleGameContainer(
-                        "assets/icons/zip_logo.png",
-                        "Zip",
-                        "117",
-                        "2 Tem, Çarşamba",
-                        "Sonuçlar",
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
+          _buildGames(),
           SizedBox(height: 8),
           // ağımı yönet gelecek
           _buildSectionTitle("Ağımı yönet"),
           SizedBox(height: 8),
           // öneriler girdview gelecek
-          _buildGridContainer(),
+          _buildGridContainer(allPersons),
+        ],
+      ),
+    );
+  }
+
+  Container _buildGames() {
+    return Container(
+      padding: Constants.paddingCard,
+      decoration: BoxDecoration(color: Constants.mainWhiteTone),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // games title
+          _buildTitleText("Günlük oyunlar aracılığıyla iletişimde kalın"),
+          SizedBox(height: 10),
+          // games horizontal listview
+          SizedBox(
+            height: 60,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: [
+                // games single container
+                _buildSingleGameContainer(
+                  "assets/icons/queens_logo.png",
+                  "Queens",
+                  "438",
+                  "2 Tem, Çarşamba",
+                  "Çöz",
+                ),
+                SizedBox(width: 10),
+                _buildSingleGameContainer(
+                  "assets/icons/tango_logo.png",
+                  "Tango",
+                  "278",
+                  "2 Tem, Çarşamba",
+                  "Çöz",
+                ),
+                SizedBox(width: 10),
+                _buildSingleGameContainer(
+                  "assets/icons/zip_logo.png",
+                  "Zip",
+                  "117",
+                  "2 Tem, Çarşamba",
+                  "Sonuçlar",
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
@@ -359,7 +382,7 @@ class _NetworkBuyutState extends State<NetworkBuyut> {
     );
   }
 
-  _buildGridContainer() {
+  _buildGridContainer(List<Person> allPerson) {
     return Container(
       padding: Constants.paddingCard,
       color: Constants.mainWhiteTone,
@@ -371,7 +394,7 @@ class _NetworkBuyutState extends State<NetworkBuyut> {
             "Son faaliyetlerinize göre tanıyabileceğiniz kişiler",
           ),
           SizedBox(height: 10),
-          // gridview 
+          // gridview
           GridView.builder(
             shrinkWrap: true, // get shrinks to large of gridview
             physics: NeverScrollableScrollPhysics(),
@@ -381,177 +404,20 @@ class _NetworkBuyutState extends State<NetworkBuyut> {
               mainAxisSpacing: 10, // spacer vertical
               childAspectRatio: 1 / 1.25, // width/height ratio
             ),
-            itemCount: 4,
+            itemCount: visiblePersons.length, 
             itemBuilder: (context, index) {
-              return Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
-                  boxShadow: [
-                    BoxShadow(blurRadius: 6, color: Colors.black12, offset: Offset(2, 2)),
-                  ],
-                ),
-                child: Stack(
-                  clipBehavior: Clip.none,
-                  children: [
-                    Column(
-                      children: [
-                        // top section (image)
-                        Expanded(
-                          flex: 1,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              image: DecorationImage(image: AssetImage("assets/images/profile_top_placeholder.png"),
-                              fit: BoxFit.cover),
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(16),
-                                topRight: Radius.circular(16),
-                              ),
-                            ),
-                          ),
-                        ),
-          
-                        // bottom section (details)
-                        Expanded(
-                          flex: 3,
-                          child: Container(
-                            width: double.infinity,
-                            padding: EdgeInsets.symmetric(horizontal: 10),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(16),
-                                bottomRight: Radius.circular(16),
-                              ),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                top: 50,
-                                left: 0,
-                                right: 0,
-                                bottom: 12,
-                              ),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        "Latif ULU",
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      SizedBox(width: 6,),
-                                      SizedBox(height: 14, width: 14, child: Image.asset("assets/icons/premium_logo.png"),)
-                                    ],
-                                  ),
-                                  SizedBox(height: 4),
-                                  Text(
-                                    "Kadir Has ÜniversitesSilivri Teknopark Gene Kadir Has ÜniversitesiSilivri Teknopark Gene Kadir Has ÜniversitesiSilivri Teknopark Gene Kadir Has ÜniversitesiSilivri Teknopark Gene",
-                                    style: TextStyle(fontSize: 12),
-                                    textAlign: TextAlign.center,
-                                    maxLines: 3,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                  SizedBox(height: 6),
-                                  Spacer(),
-                                  Column(
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          CircleAvatar(
-                                            radius: 12,
-                                            backgroundImage: AssetImage(
-                                              "assets/images/pp_man1.png",
-                                            ),
-                                          ),
-                                          SizedBox(width: 6),
-                                          Text(
-                                            "Hüseyin, ortak bağlantı",
-                                            style: TextStyle(fontSize: 11),
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(height: 10),
-                                      // bağlantı kur button
-                                      Row(
-                                        children: [
-                                          Expanded(
-                                            child: OutlinedButton(
-                                              style: OutlinedButton.styleFrom(
-                                                side: BorderSide(
-                                                  color: Constants.mainColor,
-                                                ),
-                                                foregroundColor:
-                                                    Constants.mainColor,
-                                                textStyle: TextStyle(
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
-                                              onPressed: () {},
-                                              child: Text("Bağlantı Kur"),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-          
-                    // circle avatar
-                    Positioned(
-                      top: 10,
-                      left: 0,
-                      right: 0,
-                      child: Center(
-                        child: SizedBox(
-                          width: 100,
-                          height: 100,
-                          child: CircleAvatar(
-                            radius: 50,
-                            backgroundImage: AssetImage(
-                              "assets/images/pp_woman1.png",
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-          
-                    // close icon
-                    Positioned(
-                      top: 8,
-                      right: 8,
-                      child: Container(
-                        padding: EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.black54,
-                        ),
-                        child: Icon(
-                          Icons.close,
-                          size: 20,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              );
+              final person = visiblePersons[index];
+              return PersonRequestCard(person: person, onClose: () {
+                setState(() {
+                  // when closed card, removed from ui
+                  visiblePersons.removeAt(index);
+                });
+              },);
             },
           ),
         ],
       ),
     );
   }
+
 }
