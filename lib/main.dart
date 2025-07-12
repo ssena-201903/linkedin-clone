@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:linkedin_clone/constants/constants.dart';
 import 'package:linkedin_clone/layout/main_shell.dart';
 
 void main() {
@@ -13,18 +14,40 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        // appbar theme
+        appBarTheme: AppBarTheme(
+          backgroundColor: Constants.mainWhiteTone,
+          iconTheme: IconThemeData(
+            color: Constants.appbarIconColor
+          )
+        ),
+        // elevated button theme
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.pink,
+            elevation: Constants.buttonElevation,
+            backgroundColor: Constants.backGroundBlueTone,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
             ),
           ),
         ),
+        // outlined button theme
+        outlinedButtonTheme: OutlinedButtonThemeData(
+          style: OutlinedButton.styleFrom(
+            foregroundColor: Constants.outlinedButtonForegroundColor,
+            elevation: Constants.buttonElevation,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+            padding: Constants.buttonPadding,
+            side: BorderSide(color: Constants.outlinedButtonSideColor)
+          ),
+        ),
+        // floating button theme
         floatingActionButtonTheme: FloatingActionButtonThemeData(
-          backgroundColor: Color(0xff0966C3),
-          foregroundColor: Colors.white
-        )
+          backgroundColor: Constants.mainColor,
+          foregroundColor: Colors.white,
+        ),
       ),
       home: MainShell(),
     );

@@ -18,6 +18,9 @@ class _MainShellState extends State<MainShell> {
   bool _isNavbarVisible = true;
   final ScrollController _scrollController = ScrollController();
 
+  // pages list
+  List<Widget> _pages = [];
+
   // path string list for png icon paths
   final List<String> _passiceIconPaths = [
     "assets/icons/home.png",
@@ -37,33 +40,32 @@ class _MainShellState extends State<MainShell> {
   ];
 
   // created private method for building dynamic icon
-  Widget _buildIcon(int index){
+  Widget _buildIcon(int index) {
     // if current index equals to coming index play active icon, otherwise play passive icon
-    String path = _selectedIndex == index
-    ? _activeIconPaths[index]
-    : _passiceIconPaths[index];
+    String path =
+        _selectedIndex == index
+            ? _activeIconPaths[index]
+            : _passiceIconPaths[index];
 
     // return png icon
-    return Image.asset(
-      path,
-      width: 24,
-      height: 24,
-    );
+    return Image.asset(path, width: 24, height: 24);
   }
 
   @override
   void initState() {
     super.initState();
 
-    // adding scroll listener to hide navbar
-    _scrollController.addListener((){
-      if (_scrollController.position.userScrollDirection == ScrollDirection.reverse) {
+    // scroll listener
+    _scrollController.addListener(() {
+      if (_scrollController.position.userScrollDirection ==
+          ScrollDirection.reverse) {
         if (_isNavbarVisible) {
           setState(() {
             _isNavbarVisible = false;
           });
         }
-      } else if (_scrollController.position.userScrollDirection == ScrollDirection.forward) {
+      } else if (_scrollController.position.userScrollDirection ==
+          ScrollDirection.forward) {
         if (!_isNavbarVisible) {
           setState(() {
             _isNavbarVisible = true;
@@ -71,16 +73,16 @@ class _MainShellState extends State<MainShell> {
         }
       }
     });
-  }
 
-  // created pages list to manage bottom navbar
-  List<Widget> _pages = [
-    HomePage(), 
-    NetworkPage(), 
-    PublishPage(),
-    NotificationsPage(),
-    JobsPage(),
-  ];
+    // defined pages
+    _pages = [
+      HomePage(scrollController: _scrollController),
+      NetworkPage(),
+      PublishPage(),
+      NotificationsPage(),
+      JobsPage(),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -88,25 +90,34 @@ class _MainShellState extends State<MainShell> {
       backgroundColor: Color(0xffE9E6DE),
       body: _pages[_selectedIndex],
       // created bottom navigation bar
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.white,
-        selectedItemColor: Colors.black,
-        currentIndex: _selectedIndex,
-        type: BottomNavigationBarType.fixed,
-        selectedFontSize: 12,
-        unselectedFontSize: 12,
-        onTap: (value) {
-          // to change current page actively, used setState method
-          setState(() {
-            _selectedIndex = value;
-          });
-        },
-        // initialized bottom navbar items by using list generate because we need to create dynamic bottom navbar items
-        items: List.generate(_activeIconPaths.length, (index){
-          return BottomNavigationBarItem(
-            icon: _buildIcon(index), 
-            label: ["Ana Sayfa", "Profesyonel Ağım", "Yayınla", "Bildirimler", "İş İlanları"][index] );
-        })
+      bottomNavigationBar: Visibility(
+        visible: _isNavbarVisible,
+        child: BottomNavigationBar(
+          backgroundColor: Colors.white,
+          selectedItemColor: Colors.black,
+          currentIndex: _selectedIndex,
+          type: BottomNavigationBarType.fixed,
+          selectedFontSize: 12,
+          unselectedFontSize: 12,
+          onTap: (value) {
+            setState(() {
+              _selectedIndex = value;
+            });
+          },
+          items: List.generate(_activeIconPaths.length, (index) {
+            return BottomNavigationBarItem(
+              icon: _buildIcon(index),
+              label:
+                  [
+                    "Ana Sayfa",
+                    "Profesyonel Ağım",
+                    "Yayınla",
+                    "Bildirimler",
+                    "İş İlanları",
+                  ][index],
+            );
+          }),
+        ),
       ),
     );
   }

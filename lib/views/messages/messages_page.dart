@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:linkedin_clone/constants/constants.dart';
 import 'package:linkedin_clone/views/my_text.dart';
 
 class MessagesPage extends StatefulWidget {
@@ -101,7 +102,7 @@ class MyDivider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Divider(indent: 70, endIndent: 0, height: 0, color: Colors.black12);
+    return Divider(indent: 70, endIndent: 0, height: 0, color: Constants.horizontalDividerColor);
   }
 }
 
@@ -117,7 +118,7 @@ class MyMessageContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: isRead ? Colors.white : Color(0xffE9F3FF),
+      color: isRead ? Colors.white : Constants.backGroundBlueTone,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
         child: Row(
@@ -170,7 +171,7 @@ class MyMessageContainer extends StatelessWidget {
                               height: 20,
                               width: 20,
                               decoration: BoxDecoration(
-                                color: Color(0xff0966C3),
+                                color: Constants.mainColor,
                                 shape: BoxShape.circle,
                               ),
                               child: Center(
@@ -224,7 +225,7 @@ class TopMessageContainer extends StatelessWidget {
                   children: [
                     ElevatedButton.icon(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xff017550),
+                        backgroundColor: Constants.buttonBgGreen,
                         padding: EdgeInsets.symmetric(
                           vertical: 4,
                           horizontal: 12,
@@ -237,7 +238,7 @@ class TopMessageContainer extends StatelessWidget {
                       label: MyText(
                         textContent: "Odaklı",
                         textSize: 16,
-                        textWeight: FontWeight.w400,
+                        textWeight: FontWeight.w600,
                         textColor: Colors.white,
                       ),
                       icon: Icon(
@@ -250,7 +251,7 @@ class TopMessageContainer extends StatelessWidget {
                     SizedBox(width: 10),
                     VerticalDivider(
                       width: 2,
-                      color: Colors.black12,
+                      color: Constants.verticalDividerColor,
                       indent: 10,
                       endIndent: 10,
                     ),
@@ -292,7 +293,7 @@ class MyOutlinedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return OutlinedButton(
       style: OutlinedButton.styleFrom(
-        padding: EdgeInsets.symmetric(vertical: 4, horizontal: 12),
+        
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         side: BorderSide(color: Colors.black38),
       ),
@@ -300,8 +301,8 @@ class MyOutlinedButton extends StatelessWidget {
       child: MyText(
         textContent: textButton,
         textSize: 16,
-        textWeight: FontWeight.w900,
-        textColor: const Color.fromARGB(193, 0, 0, 0),
+        textWeight: Constants.buttonTextWeight,
+        textColor: Constants.outlinedButtonForegroundColor,
       ),
     );
   }

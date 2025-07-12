@@ -3,7 +3,8 @@ import 'package:linkedin_clone/views/home/post_card.dart';
 import 'package:linkedin_clone/views/messages/messages_page.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  final ScrollController scrollController;
+  const HomePage({super.key, required this.scrollController});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -64,9 +65,14 @@ class _HomePageState extends State<HomePage> {
           ),
           // used sliverboxadapter to use not sliver widgets such as listview
           SliverToBoxAdapter(
-          child: Column(
+          child: ListView(
+            controller: widget.scrollController,
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
             children: [
               PostCard(companyLogo: "assets/icons/hyundai_logo.png", companyName: "Hyundai", postImage: "assets/images/post_image2.png", followerCount: "3.2M", minute: "30", commentCount: "11", shareCount: "6"),
+              PostCard(companyLogo: "assets/icons/netgo_logo.png", companyName: "Netgo", postImage: "assets/images/post_image4.png", followerCount: "200.120", minute: "7", commentCount: "120", shareCount: "8"),
+              PostCard(companyLogo: "assets/icons/netgo_logo.png", companyName: "Netgo", postImage: "assets/images/post_image4.png", followerCount: "200.120", minute: "7", commentCount: "120", shareCount: "8"),
               PostCard(companyLogo: "assets/icons/netgo_logo.png", companyName: "Netgo", postImage: "assets/images/post_image4.png", followerCount: "200.120", minute: "7", commentCount: "120", shareCount: "8")
             ],
           ),

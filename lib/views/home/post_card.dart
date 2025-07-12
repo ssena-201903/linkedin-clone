@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:linkedin_clone/constants/constants.dart';
 import 'package:linkedin_clone/post_detail_page.dart';
 import 'package:linkedin_clone/views/my_text.dart';
 
@@ -202,7 +203,7 @@ class _PostCardState extends State<PostCard> {
                       margin: EdgeInsets.symmetric(horizontal: 20),
                       height: 45,
                       decoration: BoxDecoration(
-                        border: Border(bottom: BorderSide(color: const Color.fromARGB(31, 82, 82, 82))),
+                        border: Border(bottom: BorderSide(color: Constants.horizontalDividerColor)),
                       ),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
