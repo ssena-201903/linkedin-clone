@@ -105,7 +105,7 @@ class _NetworkPageState extends State<NetworkPage> {
               ],
           body: TabBarView(children: [
             NetworkBuyut(),
-            NetworkHaberler()
+            NetworkHaberler(),
           ]),
         ),
       ),

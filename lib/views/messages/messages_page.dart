@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:linkedin_clone/constants/constants.dart';
+import 'package:linkedin_clone/post_detail_page.dart';
+import 'package:linkedin_clone/views/my_divider.dart';
 import 'package:linkedin_clone/views/my_text.dart';
 
 class MessagesPage extends StatefulWidget {
@@ -97,14 +99,7 @@ class _MessagesPageState extends State<MessagesPage> {
   }
 }
 
-class MyDivider extends StatelessWidget {
-  const MyDivider({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Divider(indent: 70, endIndent: 0, height: 0, color: Constants.horizontalDividerColor);
-  }
-}
 
 class MyMessageContainer extends StatelessWidget {
   final bool isRead;
@@ -206,15 +201,11 @@ class TopMessageContainer extends StatelessWidget {
       children: [
         Expanded(
           child: Container(
-            height: 50,
+            height: Constants.butonsRowHeight,
             decoration: BoxDecoration(
               color: Colors.white,
               boxShadow: [
-                BoxShadow(
-                  color: Colors.black12,
-                  offset: Offset(2, 2),
-                  blurRadius: 12,
-                ),
+                Constants.buttonRowShadow
               ],
             ),
             child: Padding(
@@ -285,25 +276,4 @@ class TopMessageContainer extends StatelessWidget {
   }
 }
 
-class MyOutlinedButton extends StatelessWidget {
-  final String textButton;
-  const MyOutlinedButton({super.key, required this.textButton});
 
-  @override
-  Widget build(BuildContext context) {
-    return OutlinedButton(
-      style: OutlinedButton.styleFrom(
-        
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        side: BorderSide(color: Colors.black38),
-      ),
-      onPressed: () {},
-      child: MyText(
-        textContent: textButton,
-        textSize: 16,
-        textWeight: Constants.buttonTextWeight,
-        textColor: Constants.outlinedButtonForegroundColor,
-      ),
-    );
-  }
-}

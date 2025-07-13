@@ -29,10 +29,11 @@ class MyApp extends StatelessWidget {
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             elevation: Constants.buttonElevation,
-            backgroundColor: Constants.backGroundBlueTone,
+            backgroundColor: Constants.mainColor,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: Constants.buttonRadius,
             ),
+            padding: Constants.buttonPadding,
           ),
         ),
         // outlined button theme
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
             foregroundColor: Constants.outlinedButtonForegroundColor,
             elevation: Constants.buttonElevation,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: Constants.buttonRadius,
             ),
             padding: Constants.buttonPadding,
             side: BorderSide(color: Constants.outlinedButtonSideColor)

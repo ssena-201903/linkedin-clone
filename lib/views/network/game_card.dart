@@ -73,14 +73,14 @@ class GameCard extends StatelessWidget {
             SizedBox(width: 30),
             OutlinedButton(
               style: OutlinedButton.styleFrom(
-                side: BorderSide(color: Constants.mainColor),
+                side: BorderSide(color: Constants.buttonBlueBorder),
               ),
               onPressed: () {},
               child: MyText(
                 textContent: "$buttonText",
                 textSize: Constants.fontSizeMidTitle,
-                textWeight: FontWeight.w600,
-                textColor: Constants.mainColor,
+                textWeight: Constants.buttonTextWeight,
+                textColor: Constants.buttonBlueTextColor,
               ),
             ),
           ],

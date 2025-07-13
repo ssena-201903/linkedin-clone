@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class Constants {
@@ -9,7 +8,7 @@ class Constants {
   static final mainGreenColor = Color(0xff017550);
   static final mainLightGrey = Color.fromARGB(255, 131, 131, 131);
   static final mainDarkGreyColor = const Color.fromARGB(255, 104, 104, 104);
-  static final mainBlackColor = Color(0xff181818); 
+  static final mainBlackColor = Color(0xff181818);
   static final mainLigthGreenColor = Color(0xffD8E9CF);
 
   // fontsizes
@@ -37,15 +36,30 @@ class Constants {
   static final backGroundBlueTone = Color(0xffE9F3FF);
 
   // button
-  static final EdgeInsets buttonPadding = EdgeInsets.symmetric(vertical: 4, horizontal: 12);
+  static final EdgeInsets buttonPadding = EdgeInsets.symmetric(
+    vertical: 4,
+    horizontal: 12,
+  );
   static final double buttonElevation = 0;
   static final FontWeight buttonTextWeight = FontWeight.w600;
+  static final double buttonTextSize = fontSizeMidTitle;
+  static final BorderRadiusGeometry buttonRadius = BorderRadius.circular(20);
+  static final buttonGreyBorder = Colors.black38;
+  static final buttonBlueBorder = mainColor;
+  static final buttonBlueTextColor = mainColor;
+  static final buttonGreyTextColor = const Color.fromARGB(193, 0, 0, 0);
+  static final buttonGreyTextWeight = FontWeight.w900;
 
   // outlined button
-  static final outlinedButtonForegroundColor = const Color.fromARGB(193, 0, 0, 0);
+  static final outlinedButtonForegroundColor = const Color.fromARGB(
+    193,
+    0,
+    0,
+    0,
+  );
   static final outlinedButtonSideColor = Colors.black38;
-  
-  // elevated button 
+
+  // elevated button
   static final buttonBgGreen = mainGreenColor;
   static final buttonBgBlue = mainColor;
   static final buttonTextColor = Colors.white;
@@ -58,4 +72,15 @@ class Constants {
 
   //padding
   static final EdgeInsets paddingCard = EdgeInsets.all(10);
+  static final EdgeInsets paddingBigCard = EdgeInsets.all(20);
+
+  // buton row style
+  static final double butonsRowHeight = 50;
+  static final BoxShadow buttonRowShadow = BoxShadow(
+    color: Colors.black12,
+    offset: Offset(2, 2),
+    blurRadius: 12,
+  );
+  static final buttonsRowSpacer = 10;
+
 }
