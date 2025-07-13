@@ -200,7 +200,7 @@ class _PersonRequestCardState extends State<PersonRequestCard> {
                 backgroundImage: AssetImage(
                   widget.person.profilePicture == ""
                       ? "assets/images/profile_picture_placeholder.png"
-                      : "assets/images/pp_woman1.png",
+                      : widget.person.profilePicture,
                 ),
               ),
             ),

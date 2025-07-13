@@ -7,6 +7,7 @@ class DataHelper {
   // persons data
   static List<Person> getPersons() {
     // common person example, it will be everybody's common person
+    // man 1
     Person commonPerson = Person(
       "assets/images/pp_man1.png",
       "", // background image
@@ -24,7 +25,7 @@ class DataHelper {
       null,
       true,
     );
-
+    // woman 2
     Person commonPerson2 = Person(
       "assets/images/pp_woman2.png",
       "", // background image
@@ -42,7 +43,7 @@ class DataHelper {
       null,
       false,
     );
-
+    // man 3
     Person commonPerson3 = Person(
       "assets/images/pp_man3.png",
       "", // background image
@@ -62,8 +63,9 @@ class DataHelper {
     );
 
     return [
+      // man
       Person(
-        "",
+        "assets/images/person_man1.jpg",
         "",
         "Ahmet Arif Isen",
         "Beykent Üniversitesi",
@@ -79,9 +81,10 @@ class DataHelper {
         commonPerson,
         false,
       ),
+      // woman
       Person(
-        "",
-        "",
+        "assets/images/person_woman3.jpg",
+        "assets/images/top_ph2.jpg",
         "Yağmur Kaftar",
         "Sakarya Üniversitesi",
         "Öğrenci - Yazar",
@@ -96,9 +99,10 @@ class DataHelper {
         commonPerson3,
         true,
       ),
+      // man
       Person(
-        "",
-        "",
+        "assets/images/person_man3.jpg",
+        "assets/images/top_ph3.jpg",
         "Mert Uçar",
         "Arçelik",
         "Mobile Developer",
@@ -113,9 +117,10 @@ class DataHelper {
         null,
         false,
       ),
+      // woman
       Person(
-        "",
-        "",
+        "assets/images/person_woman2.jpg",
+        "assets/images/top_ph4.jpg",
         "Elif Nur Kaya",
         "Hepsiburada",
         "UI/UX Designer",
@@ -130,8 +135,9 @@ class DataHelper {
         commonPerson,
         true,
       ),
+      // man
       Person(
-        "",
+        "assets/images/person_man2.jpg",
         "",
         "Burak Soysal",
         "Yemeksepeti",
@@ -147,8 +153,9 @@ class DataHelper {
         commonPerson2,
         false,
       ),
+      // woman
       Person(
-        "",
+        "assets/images/person_woman1.jpg",
         "",
         "Simay Yılmaz",
         "Trendyol",
@@ -164,9 +171,10 @@ class DataHelper {
         null,
         true,
       ),
+      // man
       Person(
-        "",
-        "",
+        "assets/images/person_man4.jpg",
+        "assets/images/top_ph1.jpg",
         "Emre Çelik",
         "Peak",
         "Software Engineer",
@@ -181,8 +189,9 @@ class DataHelper {
         commonPerson3,
         true,
       ),
+      // woman
       Person(
-        "",
+        "assets/images/person_woman4.jpg",
         "",
         "Gizem Topal",
         "Getir",
