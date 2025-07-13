@@ -13,12 +13,9 @@ class _NetworkHaberlerState extends State<NetworkHaberler> {
     return Scaffold(
       body: Column(
         children: [
-          Expanded(
-            child: Container(
-              color: Colors.green,
-              height: 40,
-            ),
-          )
+          // top buttons gelecek
+          //tebrik kartları gelecek
+          
         ],
       ),
     );
