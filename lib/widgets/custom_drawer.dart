@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:linkedin_clone/constants/constants.dart';
-import 'package:linkedin_clone/views/my_text.dart';
+import 'package:linkedin_clone/widgets/my_text.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});

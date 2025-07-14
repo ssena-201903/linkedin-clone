@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:linkedin_clone/constants/constants.dart';
-import 'package:linkedin_clone/views/my_divider.dart';
-import 'package:linkedin_clone/views/my_outlined_button.dart';
-import 'package:linkedin_clone/views/my_text.dart';
+import 'package:linkedin_clone/widgets/my_divider.dart';
+import 'package:linkedin_clone/widgets/my_outlined_button.dart';
+import 'package:linkedin_clone/widgets/my_text.dart';
 import 'package:linkedin_clone/views/network/games_section.dart';
 
 class NetworkHaberler extends StatefulWidget {

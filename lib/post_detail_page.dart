@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:linkedin_clone/views/home/post_detail_card.dart';
-import 'package:linkedin_clone/views/my_text.dart';
+import 'package:linkedin_clone/widgets/my_text.dart';
 
 class PostDetailPage extends StatelessWidget {
   const PostDetailPage({super.key});
