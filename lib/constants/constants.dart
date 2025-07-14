@@ -17,6 +17,11 @@ class Constants {
   static final double fontSizeMidTitle = 14;
   static final double fontSizeMiniTitle = 12;
 
+  // profile texts
+  static final double textHeaderSize = 20;
+  static final FontWeight textHeaderWeight = FontWeight.w900;
+  static final textHeaderColor = mainBlackColor;
+
   // appbar
   static final appbarIconColor = mainDarkGreyColor;
   static final double sliverAppbarHeight = 50;
