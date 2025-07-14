@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
       drawer: CustomDrawer(),
       body: CustomScrollView(
         slivers: [
-          // Custom SliverAppBar kullanın
+          // custom sliver appbar
           CustomSliverAppBar(
             // callback function
             onProfileTap: () {
