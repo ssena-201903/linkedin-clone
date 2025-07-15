@@ -42,15 +42,16 @@ class MessageCard extends StatelessWidget {
                         MyText(
                           textContent: senderName,
                           textSize: 18,
-                          textWeight: FontWeight.w400,
-                          textColor: Colors.black87,
+                          textWeight:
+                              isRead ? FontWeight.w400 : FontWeight.w600,
+                          textColor: Constants.mainBlackColor,
                         ),
                         Spacer(),
                         MyText(
                           textContent: date,
                           textSize: 14,
-                          textWeight: FontWeight.w400,
-                          textColor: Colors.black54,
+                          textWeight: FontWeight.w300,
+                          textColor: Constants.mainDarkGreyColor,
                         ),
                       ],
                     ),

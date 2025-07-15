@@ -87,7 +87,10 @@ class _ProfilePageState extends State<ProfilePage> {
           _buildPosts(),
           const SizedBox(height: 20),
           // experience section
-          ExperienceSectionWidget(myExperiences: myExperiences, title: "Deneyim"),
+          ExperienceSectionWidget(
+            myExperiences: myExperiences,
+            title: "Deneyim",
+          ),
           // education section
           const SizedBox(height: 20),
           ExperienceSectionWidget(myExperiences: myEducations, title: "Eğitim"),
@@ -95,7 +98,6 @@ class _ProfilePageState extends State<ProfilePage> {
           const SizedBox(height: 20),
           _buildCertificates(),
           const SizedBox(height: 20),
-
         ],
       ),
     );
@@ -105,8 +107,11 @@ class _ProfilePageState extends State<ProfilePage> {
   _buildCertificates() {
     return Column(
       children: [
-        ExperienceSectionWidget(myExperiences: myCertificates, title: "Lisanslar ve sertifikalar"),
-        ShowAllSection(text: "19 sertifikanın tümünü gör")
+        ExperienceSectionWidget(
+          myExperiences: myCertificates,
+          title: "Lisanslar ve sertifikalar",
+        ),
+        ShowAllSection(text: "19 sertifikanın tümünü gör"),
       ],
     );
   }
@@ -116,7 +121,7 @@ class _ProfilePageState extends State<ProfilePage> {
     return Stack(
       children: [
         SizedBox(
-          height: 480,
+          height: 520,
           child: Column(
             children: [
               // top placeholder image
@@ -265,7 +270,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 10),
+                        const SizedBox(height: 4),
                         // "profili geliştir" button
                         Row(
                           children: [
@@ -489,12 +494,16 @@ class _ProfilePageState extends State<ProfilePage> {
                       textWeight: FontWeight.bold,
                       textColor: Constants.mainBlackColor,
                     ),
-                    MyText(
-                      textContent:
-                          "Arama sonuçlarında ne kadar sık göründüğünüzü görün.",
-                      textSize: 14,
-                      textWeight: FontWeight.w400,
-                      textColor: Constants.mainBlackColor,
+                    SizedBox(
+                      width: 280,
+                      child: MyText(
+                        textContent:
+                            "Arama sonuçlarında ne kadar sık göründüğünüzü görün.",
+                        textSize: 14,
+                        textWeight: FontWeight.w400,
+                        textColor: Constants.mainBlackColor,
+                        textOverflow: TextOverflow.ellipsis,
+                      ),
                     ),
                   ],
                 ),
@@ -710,12 +719,4 @@ class _ProfilePageState extends State<ProfilePage> {
       ],
     );
   }
-  
-  
-  
-  
 }
-
-
-
-
