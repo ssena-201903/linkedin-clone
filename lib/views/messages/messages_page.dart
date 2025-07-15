@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:linkedin_clone/constants/constants.dart';
 import 'package:linkedin_clone/views/messages/message_card.dart';
 import 'package:linkedin_clone/views/messages/message_container.dart';
 import 'package:linkedin_clone/widgets/my_divider.dart';
+import 'package:linkedin_clone/widgets/my_text.dart';
 
 class MessagesPage extends StatefulWidget {
   const MessagesPage({super.key});
@@ -50,7 +52,7 @@ class _MessagesPageState extends State<MessagesPage> {
               onTap: () {
                 showDialog(
                   context: context,
-                  barrierColor: Colors.black.withOpacity(0.4),
+                  barrierColor: Colors.black54,
                   builder: (context) {
                     return Stack(
                       children: [
@@ -63,7 +65,7 @@ class _MessagesPageState extends State<MessagesPage> {
                             child: Container(
                               width: double.infinity,
                               padding: const EdgeInsets.symmetric(
-                                vertical: 20,
+                                vertical: 30,
                                 horizontal: 24,
                               ),
                               decoration: BoxDecoration(
@@ -83,36 +85,37 @@ class _MessagesPageState extends State<MessagesPage> {
                                       borderRadius: BorderRadius.circular(2),
                                     ),
                                   ),
-                                  const SizedBox(height: 16),
+                                  // Görüşmeleri yönet
                                   Row(
                                     children: [
-                                      const Icon(Icons.info_outline),
-                                      const SizedBox(width: 8),
+                                      Icon(Icons.fact_check, color: Constants.mainDarkGreyColor,),
+                                      const SizedBox(width: 16),
+                                      MyText(textContent: "Görüşmeleri yönet", textSize: 16, textWeight: FontWeight.w500, textColor: Constants.mainDarkGreyColor),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 16),
+                                  // uzakta mesajı ayarla
+                                  Row(
+                                    children: [
+                                      Icon(Icons.calendar_month, color: Constants.mainDarkGreyColor,),
+                                      const SizedBox(width: 16),
                                       Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
-                                        children: const [
-                                          Text(
-                                            "Görüşmeleri Yönet",
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                          Text("Premium ile aç"),
+                                        children: [
+                                          MyText(textContent: "Uzakta mesajı ayarla", textSize: 16, textWeight: FontWeight.w500, textColor: Constants.mainDarkGreyColor),
+                                          MyText(textContent: "Premium ile aç", textSize: 12, textWeight: FontWeight.w400, textColor: Constants.mainLightGrey),
                                         ],
                                       ),
                                     ],
                                   ),
                                   const SizedBox(height: 16),
+                                  // Ayarları yönet
                                   Row(
-                                    children: const [
-                                      Icon(Icons.info_outline),
-                                      SizedBox(width: 8),
-                                      Expanded(
-                                        child: Text(
-                                          "Bu özellik henüz geliştirilmedi.",
-                                        ),
-                                      ),
+                                    children: [
+                                      Icon(Icons.settings, color: Constants.mainDarkGreyColor,),
+                                      const SizedBox(width: 16),
+                                      MyText(textContent: "Ayarları yönet", textSize: 16, textWeight: FontWeight.w500, textColor: Constants.mainDarkGreyColor),
                                     ],
                                   ),
                                 ],
