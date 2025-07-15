@@ -38,6 +38,8 @@ class CustomDrawer extends StatelessWidget {
                             // name
                             GestureDetector(
                               onTap: () {
+                                // close the drawer and navigate to profile page
+                                Navigator.of(context).pop();
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
                                     builder: (context) => ProfilePage(),
