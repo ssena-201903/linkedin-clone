@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:linkedin_clone/constants/constants.dart';
+import 'package:linkedin_clone/helpers/data_helper.dart';
+import 'package:linkedin_clone/models/post.dart';
 import 'package:linkedin_clone/views/home/post_card.dart';
 import 'package:linkedin_clone/views/messages/messages_page.dart';
 import 'package:linkedin_clone/widgets/custom_drawer.dart';
 import 'package:linkedin_clone/widgets/custom_sliver_appbar.dart';
 
 class HomePage extends StatefulWidget {
+  // scroll page callback
   final Function(ScrollDirection) onScroll;
   const HomePage({super.key, required this.onScroll});
 
@@ -20,13 +23,19 @@ class _HomePageState extends State<HomePage> {
   // for scroll actions
   final ScrollController _scrollController = ScrollController();
 
+  // post list
+  late List<Post> myPostList = [];
+
   @override
   void initState() {
     super.initState();
 
+    // scrolling actions for bottom navigation bar visibility
     _scrollController.addListener((){
       widget.onScroll(_scrollController.position.userScrollDirection);
     });
+    // get post data from data helper
+    myPostList = DataHelper.getPosts();
   }
 
   @override
@@ -55,47 +64,52 @@ class _HomePageState extends State<HomePage> {
           ),
           // Posts listesi
           SliverToBoxAdapter(
-            child: ListView(
+            child: ListView.builder(
+              itemCount: myPostList.length,
               shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              children: [
-                PostCard(
-                  companyLogo: "assets/icons/hyundai_logo.png",
-                  companyName: "Hyundai",
-                  postImage: "assets/images/post_image2.png",
-                  followerCount: "3.2M",
-                  minute: "30",
-                  commentCount: "11",
-                  shareCount: "6",
-                ),
-                PostCard(
-                  companyLogo: "assets/icons/netgo_logo.png",
-                  companyName: "Netgo",
-                  postImage: "assets/images/post_image4.png",
-                  followerCount: "200.120",
-                  minute: "7",
-                  commentCount: "120",
-                  shareCount: "8",
-                ),
-                PostCard(
-                  companyLogo: "assets/icons/netgo_logo.png",
-                  companyName: "Netgo",
-                  postImage: "assets/images/post_image4.png",
-                  followerCount: "200.120",
-                  minute: "7",
-                  commentCount: "120",
-                  shareCount: "8",
-                ),
-                PostCard(
-                  companyLogo: "assets/icons/netgo_logo.png",
-                  companyName: "Netgo",
-                  postImage: "assets/images/post_image4.png",
-                  followerCount: "200.120",
-                  minute: "7",
-                  commentCount: "120",
-                  shareCount: "8",
-                ),
-              ],
+              itemBuilder: (context, index) {
+                return PostCard(post: myPostList[index]);
+              },
+              //physics: NeverScrollableScrollPhysics(),
+             
+
+                // PostCard(
+                //   companyLogo: "assets/icons/hyundai_logo.png",
+                //   companyName: "Hyundai",
+                //   postImage: "assets/images/post_image2.png",
+                //   followerCount: "3.2M",
+                //   minute: "30",
+                //   commentCount: "11",
+                //   shareCount: "6",
+                // ),
+                // PostCard(
+                //   companyLogo: "assets/icons/netgo_logo.png",
+                //   companyName: "Netgo",
+                //   postImage: "assets/images/post_image4.png",
+                //   followerCount: "200.120",
+                //   minute: "7",
+                //   commentCount: "120",
+                //   shareCount: "8",
+                // ),
+                // PostCard(
+                //   companyLogo: "assets/icons/netgo_logo.png",
+                //   companyName: "Netgo",
+                //   postImage: "assets/images/post_image4.png",
+                //   followerCount: "200.120",
+                //   minute: "7",
+                //   commentCount: "120",
+                //   shareCount: "8",
+                // ),
+                // PostCard(
+                //   companyLogo: "assets/icons/netgo_logo.png",
+                //   companyName: "Netgo",
+                //   postImage: "assets/images/post_image4.png",
+                //   followerCount: "200.120",
+                //   minute: "7",
+                //   commentCount: "120",
+                //   shareCount: "8",
+                // ),
+              
             ),
           ),
         ],

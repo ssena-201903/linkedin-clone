@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:linkedin_clone/models/comment.dart';
+import 'package:linkedin_clone/models/post.dart';
 import 'package:linkedin_clone/views/home/post_detail_card.dart';
 import 'package:linkedin_clone/widgets/my_text.dart';
 
-class PostDetailPage extends StatelessWidget {
-  const PostDetailPage({super.key});
+class PostDetailPage extends StatefulWidget {
+  final Post detailPost;
+  const PostDetailPage({super.key, required this.detailPost});
 
+  @override
+  State<PostDetailPage> createState() => _PostDetailPageState();
+}
+
+class _PostDetailPageState extends State<PostDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,13 +28,14 @@ class PostDetailPage extends StatelessWidget {
             child: ListView(
               children: [
                 PostDetailCard(
-                  companyLogo: "assets/icons/hyundai_logo.png",
-                  companyName: "Hyundai",
-                  postImage: "assets/images/post_image2.png",
-                  followerCount: "3.2M",
-                  minute: "30",
-                  commentCount: "1",
-                  shareCount: "6",
+                  companyLogo: widget.detailPost.person.profilePicture,
+                  companyName: widget.detailPost.person.personName,
+                  textPost: widget.detailPost.postContent,
+                  postImage: widget.detailPost.postImage,
+                  followerCount: "${widget.detailPost.person.followerCount}",
+                  minute: widget.detailPost.postTime,
+                  commentCount: "${widget.detailPost.comments.length}",
+                  shareCount: "${widget.detailPost.reShareCount}",
                 ),
                 // reaksiyonlar title
                 Padding(
@@ -154,8 +163,17 @@ class PostDetailPage extends StatelessWidget {
                   ),
                 ),
 
-                // comment container
-                MyCommentContainer(),
+                // comments list
+                SizedBox(
+                  height: 700,
+                  child: ListView.builder(
+                    itemCount: widget.detailPost.comments.length,
+                    shrinkWrap: true,
+                    itemBuilder: (context, index){
+                      return MyCommentContainer(detailComment: widget.detailPost.comments[index]);
+                    }
+                  ),
+                )
               ],
             ),
           ),
@@ -260,7 +278,7 @@ class MyOutlinedButton extends StatelessWidget {
       child: MyText(
         textContent: textButton,
         textSize: 16,
-        textWeight: FontWeight.w900,
+        textWeight: FontWeight.w600,
         textColor: const Color.fromARGB(193, 0, 0, 0),
       ),
     );
@@ -268,19 +286,20 @@ class MyOutlinedButton extends StatelessWidget {
 }
 
 class MyCommentContainer extends StatelessWidget {
-  const MyCommentContainer({super.key});
+  final Comment detailComment;
+  const MyCommentContainer({super.key, required this.detailComment});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(30.0),
+      padding: const EdgeInsets.fromLTRB(30, 20, 30, 0),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // user profile picture
           CircleAvatar(
             radius: 15,
-            child: Image.asset("assets/images/pp_woman2.png"),
+            child: Image.asset(detailComment.person.profilePicture),
           ),
           SizedBox(width: 10),
           // info section
@@ -294,7 +313,7 @@ class MyCommentContainer extends StatelessWidget {
                     Row(
                       children: [
                         MyText(
-                          textContent: "Selda Yılmaz",
+                          textContent: detailComment.person.personName,
                           textSize: 14,
                           textWeight: FontWeight.bold,
                           textColor: Colors.black87,
@@ -307,7 +326,7 @@ class MyCommentContainer extends StatelessWidget {
                         ),
                         SizedBox(width: 4),
                         MyText(
-                          textContent: "2.",
+                          textContent: "${detailComment.person.connectionDegree}.",
                           textSize: 12,
                           textWeight: FontWeight.w400,
                           textColor: const Color.fromARGB(221, 83, 83, 83),
@@ -317,7 +336,7 @@ class MyCommentContainer extends StatelessWidget {
                     Row(
                       children: [
                         MyText(
-                          textContent: "48 dakika",
+                          textContent: "${detailComment.time} dakika",
                           textSize: 12,
                           textWeight: FontWeight.w400,
                           textColor: const Color.fromARGB(221, 83, 83, 83),
@@ -329,7 +348,7 @@ class MyCommentContainer extends StatelessWidget {
                   ],
                 ),
                 MyText(
-                  textContent: "IT Business Partner at Hyundai",
+                  textContent: detailComment.person.companyName,
                   textSize: 12,
                   textWeight: FontWeight.w400,
                   textColor: Colors.black54,
@@ -337,12 +356,12 @@ class MyCommentContainer extends StatelessWidget {
                 SizedBox(height: 10),
                 MyText(
                   textContent:
-                      "Bu harika bir haberi gelişmeleri heyecanla bekliyorum!",
+                      detailComment.content,
                   textSize: 14,
                   textWeight: FontWeight.w400,
                   textColor: Colors.black87,
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: 10),
                 // like section
                 Container(
                   height: 30,

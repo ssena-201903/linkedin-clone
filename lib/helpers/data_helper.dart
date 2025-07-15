@@ -296,7 +296,7 @@ class DataHelper {
     final person1 = Person(
       "assets/images/pp_man1.png",
       "",
-      "Latif Durmuş",
+      "Ömer Kalaycı",
       "Kadir Has Üniversitesi",
       "Öğrenci",
       "Yazılım meraklısı",
@@ -311,9 +311,9 @@ class DataHelper {
       false,
     );
     final person2 = Person(
-      "assets/images/pp_woman1.png",
+      "assets/images/infogenix_labs.png",
       "",
-      "Melisa Yıldız",
+      "Infogenix Labs",
       "Trendyol",
       "UX Designer",
       "Tasarım tutkunu.",
@@ -328,9 +328,9 @@ class DataHelper {
       true,
     );
     final person3 = Person(
+      "assets/images/devix_solutions.png",
       "",
-      "",
-      "Emir Demir",
+      "Devix Solutions",
       "Getir",
       "Android Developer",
       "Mobil geliştirici.",
@@ -345,7 +345,7 @@ class DataHelper {
       false,
     );
     final person4 = Person(
-      "",
+      "assets/images/pp_woman2.png",
       "",
       "Zeynep Er",
       "Hepsiburada",
@@ -362,7 +362,7 @@ class DataHelper {
       true,
     );
     final person5 = Person(
-      "",
+      "assets/images/pp_man3.png",
       "",
       "Hakan Çetin",
       "Yemeksepeti",
@@ -380,7 +380,7 @@ class DataHelper {
     );
 
     final commenter1 = Person(
-      "",
+      "assets/images/pp_woman1.png",
       "",
       "Merve Taş",
       "Arçelik",
@@ -397,7 +397,7 @@ class DataHelper {
       false,
     );
     final commenter2 = Person(
-      "",
+      "assets/images/pp_man2.png",
       "",
       "Burak Gül",
       "Peak",
@@ -409,7 +409,24 @@ class DataHelper {
       210,
       330,
       580,
-      2,
+      3,
+      null,
+      false,
+    );
+    final commenter3 = Person(
+      "assets/images/pp_woman3.png",
+      "",
+      "Chloe Hartley",
+      "Microsoft",
+      "Full Stack",
+      "Her şeye karışır.",
+      "Los Angeles",
+      120,
+      18,
+      210,
+      330,
+      580,
+      1,
       null,
       false,
     );
@@ -418,15 +435,12 @@ class DataHelper {
       // 🟩 UZUN POST 1
       Post(
         """🚀 Büyük bir yolculuğun sonuna geldik!
-
 Son 4 ayda ekip olarak geliştirdiğimiz yeni mobil uygulamamız artık yayınlandı. Her günümüzü kullanıcı deneyimini geliştirmek, performansı artırmak ve tasarımı sadeleştirmek için harcadık.
-
 📱 Flutter ile geliştirilen bu uygulama sayesinde kullanıcılar çok daha hızlı ve sezgisel bir arayüzle karşılaşacak. Ayrıca CI/CD süreçleriyle deploy sürecimizi %50 hızlandırdık.
-
 Bu süreçte emeği geçen tüm ekip arkadaşlarıma teşekkür ederim. 👏  
 Kullananlardan yorum ve öneri bekliyoruz 🙌""",
-        "3s",
-        "",
+        "38",
+        "assets/images/post_image3.png",
         20,
         145,
         person1,
@@ -435,8 +449,22 @@ Kullananlardan yorum ve öneri bekliyoruz 🙌""",
             "Tebrikler, çok başarılı bir iş çıkmış 👌",
             5,
             1,
-            "2s",
+            "2",
             commenter1,
+          ),
+          Comment(
+            "Emeğinize sağlık",
+            5,
+            1,
+            "10",
+            commenter2,
+          ),
+          Comment(
+            "Congrats!!!",
+            5,
+            1,
+            "43",
+            commenter3,
           ),
         ],
       ),
@@ -444,15 +472,12 @@ Kullananlardan yorum ve öneri bekliyoruz 🙌""",
       // 🟩 UZUN POST 2
       Post(
         """🎨 Tasarım yaparken kullanıcıyı merkezde tutmak zorundayız.
-
 Bir arayüzün güzel görünmesi yeterli değil; kullanışlı, sezgisel ve anlamlı olması gerekir. Özellikle renk kontrastı, tipografi ve boşluk kullanımı detay gibi görünse de kullanıcıyı doğrudan etkiler.
-
 📊 Yaptığımız son A/B testlerinde sadeleştirilmiş arayüzlerin dönüşüm oranlarını %23 artırdığını gözlemledik.  
 Bu nedenle yeni sürümde fazlalıkları azalttık, odak noktalarını netleştirdik.
-
 Karmaşıklık yerine sadelik kazandırır. 💡""",
-        "6s",
-        "",
+        "18",
+        "assets/images/post_image1.png",
         13,
         97,
         person2,
@@ -461,7 +486,7 @@ Karmaşıklık yerine sadelik kazandırır. 💡""",
             "Tasarımda sadelik, hız kadar önemli. Harika analiz!",
             4,
             0,
-            "4s",
+            "4",
             commenter2,
           ),
         ],
@@ -469,9 +494,9 @@ Karmaşıklık yerine sadelik kazandırır. 💡""",
 
       // 🟨 ORTA
       Post(
-        "Bugün Getir ekibi olarak büyük bir başarıya imza attık 🚴‍♂️ Yeni sürümle birlikte uygulamanın tepkime süresini %35 oranında düşürdük. Teknik detaylar blog yazımda.",
+        "Bugün Devix Solutions ekibi olarak büyük bir başarıya imza attık 🚴‍♂️ Yeni sürümle birlikte uygulamanın tepkime süresini %35 oranında düşürdük. Teknik detaylar blog yazımda.",
         "8s",
-        "",
+        "assets/images/meeting.png",
         10,
         88,
         person3,

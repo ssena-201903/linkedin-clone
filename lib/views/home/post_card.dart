@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:linkedin_clone/constants/constants.dart';
+import 'package:linkedin_clone/models/post.dart';
 import 'package:linkedin_clone/post_detail_page.dart';
 import 'package:linkedin_clone/widgets/my_text.dart';
 
 class PostCard extends StatefulWidget {
-  final String companyLogo;
-  final String companyName;
-  final String postImage;
-  final String followerCount;
-  final String minute;
-  final String commentCount;
-  final String shareCount;
+  final Post post;
 
-  const PostCard({super.key, required this.companyLogo, required this.companyName, required this.postImage, required this.followerCount, required this.minute, required this.commentCount, required this.shareCount});
+  const PostCard({super.key, required this.post});
 
   @override
   State<PostCard> createState() => _PostCardState();
@@ -20,14 +15,13 @@ class PostCard extends StatefulWidget {
 
 class _PostCardState extends State<PostCard> {
   bool isExpanded = false; // is post text expanded
-  final String postText =
-      "💡 Gelecek, birlikte yazılıyor.Son aylarda ekibimizle birlikte üzerinde çalıştığımız yapay zekâ tabanlı proje nihayet lansman aşamasına geldi. 🚀Bu süreç boyunca sadece teknolojik bir ürün geliştirmedik; aynı zamanda takım ruhunu, esnek çalışma kültürünü ve yaratıcı problem çözme yöntemlerini de yeniden tanımladık.Gece geç saatlere kadar süren beyin fırtınaları, başarısız olan denemeler, küçük zaferler ve büyük derslerle dolu bir yolculuktu bu. 🔍📈 Projemiz, kullanıcıların verimliliğini artırmakla kalmıyor, aynı zamanda kişiselleştirilmiş öneri motoru sayesinde iş süreçlerine yeni bir boyut kazandırıyor.Kısacası: sadece bir yazılım değil, bir vizyon inşa ediyoruz.💬 Bir ekip arkadaşıma göre:Artık toplantılarda konuştuğumuz her şey, sistemin bir sonraki önerisine yön veriyor.Bu cümle bile geldiğimiz noktayı özetliyor aslında.🙏 Başta proje yöneticimiz [@isim] olmak üzere emeği geçen herkese minnettarım.Bir fikrin hayale, hayalin ürüne dönüşmesini hep birlikte yaşamak çok eğerliydi.👉 Sizin de benzer dönüşüm hikâyeleriniz varsa, yorumlara yazmanızı çok isterim.Hadi birlikte öğrenelim, birlikte büyüyelim. 🌱#YapayZeka #AI #TechLeadership #TeamWork #StartupJourney #Innovation";
+  bool isLikedPost = false; // is clicked post like reaction
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => PostDetailPage()));
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => PostDetailPage(detailPost: widget.post,)));
       },
       child: Padding(
         padding: const EdgeInsets.only(top: 8),
@@ -57,7 +51,7 @@ class _PostCardState extends State<PostCard> {
                                 decoration: BoxDecoration(
                                   // border: Border.all(color: Colors.black),
                                   image: DecorationImage(
-                                    image: AssetImage(widget. companyLogo),
+                                    image: AssetImage(widget.post.person.profilePicture),
                                   ),
                                 ),
                               ),
@@ -68,14 +62,14 @@ class _PostCardState extends State<PostCard> {
                                 children: [
                                   // company name
                                   MyText(
-                                    textContent: widget. companyName,
+                                    textContent: widget.post.person.personName,
                                     textSize: 16,
                                     textWeight: FontWeight.bold,
                                     textColor: Colors.black87,
                                   ),
                                   // follower count
                                   MyText(
-                                    textContent: "${widget. followerCount} takipçi",
+                                    textContent: "${widget.post.person.followerCount} takipçi",
                                     textSize: 12,
                                     textWeight: FontWeight.w400,
                                     textColor: const Color.fromARGB(
@@ -89,7 +83,7 @@ class _PostCardState extends State<PostCard> {
                                   Row(
                                     children: [
                                       MyText(
-                                        textContent: "${widget. minute} dakika",
+                                        textContent: "${widget.post.postTime} dakika",
                                         textSize: 12,
                                         textWeight: FontWeight.w400,
                                         textColor: const Color.fromARGB(
@@ -150,7 +144,7 @@ class _PostCardState extends State<PostCard> {
                         children: [
                           // Post text
                           MyText(
-                            textContent: postText,
+                            textContent: widget.post.postContent,
                             textSize: 14,
                             textWeight: FontWeight.w400,
                             textColor: Colors.black,
@@ -162,7 +156,7 @@ class _PostCardState extends State<PostCard> {
                             textHeight: 1.5,
                           ),
                           // see more text
-                          if (_shouldShowSeeMore(postText))
+                          if (_shouldShowSeeMore(widget.post.postContent))
                             GestureDetector(
                               onTap: () {
                                 setState(() {
@@ -184,6 +178,7 @@ class _PostCardState extends State<PostCard> {
                     ),
                     SizedBox(height: 20),
                     // IMAGE POST
+                    widget.post.postImage.isNotEmpty ?
                     Row(
                       children: [
                         Expanded(
@@ -191,13 +186,14 @@ class _PostCardState extends State<PostCard> {
                             height: 300,
                             decoration: BoxDecoration(
                               image: DecorationImage(
-                                image: AssetImage(widget. postImage), fit: BoxFit.cover,
+                                image: AssetImage(widget.post.postImage), fit: BoxFit.cover,
                               ),
                             ),
                           ),
                         ),
                       ],
-                    ),
+                    ) 
+                    : SizedBox(),
                     // REACTION, COMMENT CONTAINER
                     Container(
                       margin: EdgeInsets.symmetric(horizontal: 20),
@@ -244,7 +240,7 @@ class _PostCardState extends State<PostCard> {
                                 ),
                                 Positioned(
                                   left: 60,
-                                  child: MyText(textContent: "2", textSize: 14, textWeight: FontWeight.w400, textColor: Colors.black54)
+                                  child: MyText(textContent: isLikedPost ? "10" : "9", textSize: 14, textWeight: FontWeight.w400, textColor: Colors.black54)
                                 )
                               ],
                             ),
@@ -254,11 +250,11 @@ class _PostCardState extends State<PostCard> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                MyText(textContent: "${widget. commentCount} yorum", textSize: 14, textWeight: FontWeight.w400, textColor: Colors.black54),
+                                MyText(textContent: "${widget.post.comments.length} yorum", textSize: 14, textWeight: FontWeight.w400, textColor: Colors.black54),
                                 SizedBox(width: 6,),
                                 MyText(textContent: "·", textSize: 16, textWeight: FontWeight.bold, textColor: Colors.black54),
                                 SizedBox(width: 6,),
-                                MyText(textContent: "${widget. shareCount} paylaşım", textSize: 14, textWeight: FontWeight.w400, textColor: Colors.black54),
+                                MyText(textContent: "${widget.post.reShareCount} paylaşım", textSize: 14, textWeight: FontWeight.w400, textColor: Colors.black54),
                               ],
                             )
                           )
@@ -274,12 +270,20 @@ class _PostCardState extends State<PostCard> {
                           Expanded(
                             child: InkWell(
                               onTap: () {
-                                
+                                setState(() {
+                                  isLikedPost = !isLikedPost;
+                                });
                               },
                               child: Container(
                                 alignment: Alignment.center,
                                 child: Column(
                                   children: [
+                                    isLikedPost ? 
+                                      SizedBox(
+                                      height: 16, 
+                                      child: Image.asset("assets/icons/like_reaction.png"),
+                                    )
+                                    :
                                     SizedBox(
                                       height: 16, 
                                       child: Image.asset("assets/icons/like.png"),
