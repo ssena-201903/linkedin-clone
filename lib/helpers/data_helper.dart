@@ -211,44 +211,63 @@ class DataHelper {
   }
 
   // experience data
-  static List<Experience> experiences = [
+  static List<Experience> experienceList = [
     Experience(
-      "Frontend Developer",
-      "Trendyol",
-      "Haziran 2023",
+      "assets/images/infogenix_labs.png",
+      "Junior Mobile Developer",
+      "Infogenix Labs",
+      "Ekim 2024",
       "Devam ediyor",
-      "1 yıl 1 ay",
-      "İstanbul, Türkiye",
-      "Mobil uygulama arayüzleri geliştirme, performans iyileştirme ve kullanıcı deneyimi tasarımı üzerine çalıştım. Flutter ve React Native projelerinde görev aldım.",
+      "9 ay",
+      "Tam Zamanlı",
+      "Flutter, Riverpod, IoT, Firebase, Socket.IO",
     ),
     Experience(
-      "Software Developer Intern",
-      "Yemeksepeti",
-      "Temmuz 2022",
-      "Eylül 2022",
-      "3 ay",
-      "İstanbul, Türkiye",
-      "Backend ekibiyle birlikte API geliştirme süreçlerinde bulundum. Node.js ve MongoDB teknolojileri üzerinde çalışmalar yaptım.",
+      "assets/images/nexora_soft.png",
+      "Flutter Developer",
+      "Nexora Soft",
+      "Mart 2022",
+      "Temmuz 2024",
+      "2 yıl 4 ay",
+      "Remote",
+      "Flutter, REST API, Clean Architecture, Firebase",
     ),
     Experience(
-      "Freelance Web Developer",
-      "Serbest",
-      "Ocak 2021",
-      "Haziran 2022",
-      "1 yıl 6 ay",
-      "Uzaktan",
-      "Küçük ve orta ölçekli işletmelere web siteleri geliştirdim. HTML, CSS, JavaScript ve WordPress kullanarak projeler ürettim.",
-    ),
-    Experience(
-      "Yazılım Mühendisliği Lisans",
-      "Beykent Üniversitesi",
-      "Eylül 2019",
-      "Haziran 2023",
-      "3 yıl 10 ay",
-      "İstanbul, Türkiye",
-      "Bilgisayar bilimleri temelleri, veri yapıları, algoritmalar ve mobil uygulama geliştirme üzerine yoğunlaştım. Bitirme projesi olarak Flutter ile mobil uygulama geliştirdim.",
+      "assets/images/devix_solutions.png",
+      "Mobile App Intern",
+      "Devix Solutions",
+      "Haziran 2021",
+      "Eylül 2021",
+      "4 ay",
+      "Hibrit",
+      "Flutter, Git, UI/UX, Agile Scrum",
     ),
   ];
+
+  static List<Experience> educationList = [
+  Experience(
+    "assets/images/ytu_logo.png", 
+    "Bilgisayar Mühendisliği Yüksek Lisans",
+    "Yıldız Teknik Üniversitesi",
+    "Eylül 2023",
+    "Devam ediyor",
+    "10 ay",
+    "İstanbul, Türkiye",
+    "Makine öğrenmesi, mobil sistemler +3 yetenek",
+  ),
+  Experience(
+    "assets/images/iu_logo.png", 
+    "Bilgisayar Mühendisliği Lisans",
+    "İstanbul Üniversitesi",
+    "Eylül 2017",
+    "Haziran 2021",
+    "3 yıl 10 ay",
+    "İstanbul, Türkiye",
+    "Algoritmalar, veri yapıları, yazılım mühendisliği +2 yetenek",
+  ),
+];
+
+
 
   // post list (5)
   static List<Post> getPosts() {

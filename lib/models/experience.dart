@@ -1,4 +1,5 @@
 class Experience {
+  final String logoPicture;
   final String title;
   final String companyName;
   final String startDate;
@@ -7,5 +8,5 @@ class Experience {
   final String location;
   final String explanation;
 
-  Experience(this.title, this.companyName, this.startDate, this.endDate, this.duration, this.location, this.explanation);
+  Experience(this.logoPicture, this.title, this.companyName, this.startDate, this.endDate, this.duration, this.location, this.explanation);
 }

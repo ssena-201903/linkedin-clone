@@ -1,11 +1,12 @@
-import 'dart:ui' as BorderType;
-
 import 'package:flutter/material.dart';
 import 'package:linkedin_clone/constants/constants.dart';
-import 'package:dotted_border/dotted_border.dart';
-import 'package:linkedin_clone/views/home/post_card.dart';
+import 'package:linkedin_clone/helpers/data_helper.dart';
+import 'package:linkedin_clone/models/experience.dart';
 import 'package:linkedin_clone/views/profile/dashed_border_box.dart';
+import 'package:linkedin_clone/views/profile/experience_card.dart';
+import 'package:linkedin_clone/views/profile/experience_section_widget.dart';
 import 'package:linkedin_clone/views/profile/post_profile.dart';
+import 'package:linkedin_clone/views/profile/show_all_section.dart';
 import 'package:linkedin_clone/widgets/my_text.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -19,6 +20,17 @@ class _ProfilePageState extends State<ProfilePage> {
   TextEditingController tfAppbar = TextEditingController(
     text: "Safiye Sena Merdin",
   );
+
+  late List<Experience> myExperiences = [];
+  late List<Experience> myEducations = [];
+
+  @override
+  void initState() {
+    super.initState();
+
+    myExperiences = DataHelper.experienceList;
+    myEducations = DataHelper.educationList;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,17 +74,22 @@ class _ProfilePageState extends State<ProfilePage> {
       body: ListView(
         children: [
           // profile image section
-          _buildTitleSection(),
+          //_buildTitleSection(),
           const SizedBox(height: 20),
           // views analysis section
-          _buildAnalysis(),
+          //_buildAnalysis(),
           const SizedBox(height: 20),
           // about section
-          _buildAbout(),
+          //_buildAbout(),
           const SizedBox(height: 30),
           // posts section
-          _buildPosts(),
+          //_buildPosts(),
           const SizedBox(height: 20),
+          // experience section
+          ExperienceSectionWidget(myExperiences: myExperiences, title: "Deneyim"),
+          // education section
+          const SizedBox(height: 20),
+          ExperienceSectionWidget(myExperiences: myEducations, title: "Eğitim"),
         ],
       ),
     );
@@ -677,36 +694,10 @@ class _ProfilePageState extends State<ProfilePage> {
       ],
     );
   }
+  
+  
 }
 
-class ShowAllSection extends StatelessWidget {
-  final String text;
-  const ShowAllSection({super.key, required this.text});
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border(
-          top: BorderSide(color: Constants.horizontalDividerColor),
-        ),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.only(top: 10),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            MyText(
-              textContent: text,
-              textSize: 14,
-              textWeight: FontWeight.w600,
-              textColor: Constants.mainBlackColor,
-            ),
-            SizedBox(width: 4),
-            Icon(Icons.arrow_forward, size: 20),
-          ],
-        ),
-      ),
-    );
-  }
-}
+
+
