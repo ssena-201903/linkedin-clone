@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
     super.initState();
 
     // scrolling actions for bottom navigation bar visibility
-    _scrollController.addListener((){
+    _scrollController.addListener(() {
       widget.onScroll(_scrollController.position.userScrollDirection);
     });
     // get post data from data helper
@@ -40,79 +40,42 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Constants.bgPageColor,
-      // global key
-      key: _scaffoldKey,
-      // Drawer
-      drawer: CustomDrawer(),
-      body: CustomScrollView(
-        controller: _scrollController,
-        slivers: [
-          // custom sliver appbar
-          CustomSliverAppBar(
-            // callback function
-            onProfileTap: () {
-              _scaffoldKey.currentState?.openDrawer();
-            },
-            // callback function
-            onMessageTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => MessagesPage()),
-              );
-            },
-          ),
-          // Posts listesi
-          SliverToBoxAdapter(
-            child: ListView.builder(
-              itemCount: myPostList.length,
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                return PostCard(post: myPostList[index]);
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Constants.bgPageColor,
+        // global key
+        key: _scaffoldKey,
+        // Drawer
+        drawer: CustomDrawer(),
+        body: CustomScrollView(
+          controller: _scrollController,
+          slivers: [
+            // custom sliver appbar
+            CustomSliverAppBar(
+              // callback function
+              onProfileTap: () {
+                _scaffoldKey.currentState?.openDrawer();
               },
-              //physics: NeverScrollableScrollPhysics(),
-             
-
-                // PostCard(
-                //   companyLogo: "assets/icons/hyundai_logo.png",
-                //   companyName: "Hyundai",
-                //   postImage: "assets/images/post_image2.png",
-                //   followerCount: "3.2M",
-                //   minute: "30",
-                //   commentCount: "11",
-                //   shareCount: "6",
-                // ),
-                // PostCard(
-                //   companyLogo: "assets/icons/netgo_logo.png",
-                //   companyName: "Netgo",
-                //   postImage: "assets/images/post_image4.png",
-                //   followerCount: "200.120",
-                //   minute: "7",
-                //   commentCount: "120",
-                //   shareCount: "8",
-                // ),
-                // PostCard(
-                //   companyLogo: "assets/icons/netgo_logo.png",
-                //   companyName: "Netgo",
-                //   postImage: "assets/images/post_image4.png",
-                //   followerCount: "200.120",
-                //   minute: "7",
-                //   commentCount: "120",
-                //   shareCount: "8",
-                // ),
-                // PostCard(
-                //   companyLogo: "assets/icons/netgo_logo.png",
-                //   companyName: "Netgo",
-                //   postImage: "assets/images/post_image4.png",
-                //   followerCount: "200.120",
-                //   minute: "7",
-                //   commentCount: "120",
-                //   shareCount: "8",
-                // ),
-              
+              // callback function
+              onMessageTap: () {
+                Navigator.of(
+                  context,
+                ).push(MaterialPageRoute(builder: (context) => MessagesPage()));
+              },
             ),
-          ),
-        ],
+            // Posts listesi
+            SliverToBoxAdapter(
+              child: ListView.builder(
+                itemCount: myPostList.length,
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  return PostCard(post: myPostList[index]);
+                },
+                physics: const NeverScrollableScrollPhysics(),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

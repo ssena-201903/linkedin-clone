@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:linkedin_clone/constants/constants.dart';
-import 'package:linkedin_clone/post_detail_page.dart';
 import 'package:linkedin_clone/widgets/my_text.dart';
 
 class PostProfile extends StatefulWidget {

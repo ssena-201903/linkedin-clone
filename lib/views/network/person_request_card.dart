@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:linkedin_clone/constants/constants.dart';
 import 'package:linkedin_clone/models/person.dart';
+import 'package:linkedin_clone/widgets/my_text.dart';
 
 class PersonRequestCard extends StatefulWidget {
   // sended just person object
@@ -9,9 +10,9 @@ class PersonRequestCard extends StatefulWidget {
   final VoidCallback onClose;
 
   const PersonRequestCard({
-    super.key, 
-    required this.person, 
-    required this.onClose
+    super.key,
+    required this.person,
+    required this.onClose,
   });
 
   @override
@@ -27,7 +28,7 @@ class _PersonRequestCardState extends State<PersonRequestCard> {
       height: 320, // constant height
       constraints: BoxConstraints(minWidth: 150, maxWidth: 250),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(blurRadius: 6, color: Colors.black12, offset: Offset(2, 2)),
         ],
@@ -52,8 +53,8 @@ class _PersonRequestCardState extends State<PersonRequestCard> {
                       fit: BoxFit.cover,
                     ),
                     borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(16),
-                      topRight: Radius.circular(16),
+                      topLeft: Radius.circular(12),
+                      topRight: Radius.circular(12),
                     ),
                   ),
                 ),
@@ -69,8 +70,8 @@ class _PersonRequestCardState extends State<PersonRequestCard> {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(16),
-                      bottomRight: Radius.circular(16),
+                      bottomLeft: Radius.circular(12),
+                      bottomRight: Radius.circular(12),
                     ),
                   ),
                   child: Padding(
@@ -131,14 +132,22 @@ class _PersonRequestCardState extends State<PersonRequestCard> {
                                     ),
                                   ),
                                   SizedBox(width: 6),
-                                  Text(
-                                    "${widget.person.commonPerson!.personName}, ortak bağlantı",
-                                    style: TextStyle(fontSize: 11),
+                                  Flexible(
+                                    child: MyText(
+                                      textContent:
+                                          "${widget.person.commonPerson!.personName}, ortak bağlantı",
+                                      textSize: 11,
+                                      textWeight: FontWeight.w500,
+                                      textColor: Constants.mainDarkGreyColor,
+                                      textOverflow: TextOverflow.ellipsis,
+                                    ),
                                   ),
                                 ] else ...[
-                                  Text(
-                                    "Profiliniz esas alınmıştır",
-                                    style: TextStyle(fontSize: 11),
+                                  MyText(
+                                    textContent: "Profiliniz esas alınmıştır",
+                                    textSize: 11,
+                                    textWeight: FontWeight.w500,
+                                    textColor: Constants.mainDarkGreyColor,
                                   ),
                                 ],
                               ],
@@ -149,32 +158,35 @@ class _PersonRequestCardState extends State<PersonRequestCard> {
                             Row(
                               children: [
                                 Expanded(
-                                  child: OutlinedButton(
-                                    style: OutlinedButton.styleFrom(
-                                      side: BorderSide(
-                                        color:
+                                  child: SizedBox(
+                                    height: 35,
+                                    child: OutlinedButton(
+                                      style: OutlinedButton.styleFrom(
+                                        side: BorderSide(
+                                          color:
+                                              isPressedConnect
+                                                  ? Constants.mainLightGrey
+                                                  : Constants.mainColor,
+                                        ),
+                                        foregroundColor:
                                             isPressedConnect
-                                                ? Constants.mainLightGrey
+                                                ? Constants.mainDarkGreyColor
                                                 : Constants.mainColor,
+                                        textStyle: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
-                                      foregroundColor:
-                                          isPressedConnect
-                                              ? Constants.mainDarkGreyColor
-                                              : Constants.mainColor,
-                                      textStyle: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
+                                      onPressed: () {
+                                        setState(() {
+                                          isPressedConnect = !isPressedConnect;
+                                        });
+                                      },
+                                      child: Text(
+                                        isPressedConnect
+                                            ? "Beklemede"
+                                            : "Bağlantı Kur",
                                       ),
-                                    ),
-                                    onPressed: () {
-                                      setState(() {
-                                        isPressedConnect = !isPressedConnect;
-                                      });
-                                    },
-                                    child: Text(
-                                      isPressedConnect
-                                          ? "Beklemede"
-                                          : "Bağlantı Kur",
                                     ),
                                   ),
                                 ),

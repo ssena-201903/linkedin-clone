@@ -10,7 +10,16 @@ class GamesSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: Constants.paddingCard,
-      decoration: BoxDecoration(color: Constants.mainWhiteTone),
+      decoration: BoxDecoration(
+        color: Constants.mainWhiteTone,
+        border: Border(
+          bottom: BorderSide(
+            color: Constants.horizontalDividerColor,
+            width: 0.5,
+          ),
+          top: BorderSide(color: Constants.horizontalDividerColor, width: 0.5),
+        ),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -24,13 +33,31 @@ class GamesSection extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               children: [
                 // games single container
-                GameCard(imagePath: "assets/icons/queens_logo.png", name: "Queens", dayCount: "438", date: "2 Tem, Çarşamba", buttonText: "Çöz"),
+                GameCard(
+                  imagePath: "assets/icons/queens_logo.png",
+                  name: "Queens",
+                  dayCount: "438",
+                  date: "2 Tem, Çarşamba",
+                  buttonText: "Çöz",
+                ),
                 SizedBox(width: 10),
                 // games single container
-                GameCard(imagePath: "assets/icons/tango_logo.png", name: "Tango", dayCount: "278", date: "2 Tem, Çarşamba", buttonText: "Çöz"),
+                GameCard(
+                  imagePath: "assets/icons/tango_logo.png",
+                  name: "Tango",
+                  dayCount: "278",
+                  date: "2 Tem, Çarşamba",
+                  buttonText: "Çöz",
+                ),
                 SizedBox(width: 10),
                 // games single container
-                GameCard(imagePath: "assets/icons/zip_logo.png", name: "Zip", dayCount: "117", date: "2 Tem, Çarşamba", buttonText: "Çöz"),
+                GameCard(
+                  imagePath: "assets/icons/zip_logo.png",
+                  name: "Zip",
+                  dayCount: "117",
+                  date: "2 Tem, Çarşamba",
+                  buttonText: "Çöz",
+                ),
               ],
             ),
           ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:linkedin_clone/constants/constants.dart';
+import 'package:linkedin_clone/views/network/job_congrat_card.dart';
 import 'package:linkedin_clone/widgets/my_divider.dart';
 import 'package:linkedin_clone/widgets/my_outlined_button.dart';
 import 'package:linkedin_clone/widgets/my_text.dart';
@@ -18,40 +19,75 @@ class _NetworkHaberlerState extends State<NetworkHaberler> {
     return Scaffold(
       backgroundColor: Constants.bgPageColor,
       body: ListView(
+        padding: EdgeInsets.zero,
         children: [
           // top buttons gelecek
           _buildTopButtonsRow(),
           SizedBox(height: 8),
-          // listview olacak
-          _buildCongratsList(),
           //tebrik kartları gelecek
+          JobCongratCard(
+            isWorkCongrats: true,
+            profileImage: "assets/images/person_woman1.jpg",
+            name: "Selda Bilici",
+            year: "1 yıl",
+            likedCount: 45,
+            commentCount: 76,
+            date: "",
+          ),
+          MyDivider(),
+          JobCongratCard(
+            isWorkCongrats: false,
+            profileImage: "assets/images/person_man4.jpg",
+            name: "Ömer Korkusuz",
+            year: "",
+            likedCount: 0,
+            commentCount: 0,
+            date: "12 Temmuz",
+          ),
           // games section gelecek
           GamesSection(),
           MyDivider(),
+          JobCongratCard(
+            isWorkCongrats: true,
+            profileImage: "assets/images/person_woman3.jpg",
+            name: "Nehir Yıldız",
+            year: "4 yıl",
+            likedCount: 27,
+            commentCount: 76,
+            date: "",
+          ),
+          MyDivider(),
+          JobCongratCard(
+            isWorkCongrats: false,
+            profileImage: "assets/images/person_man3.jpg",
+            name: "Kaan Yılmaz",
+            year: "",
+            likedCount: 0,
+            commentCount: 0,
+            date: "17 Temmuz",
+          ),
+          MyDivider(),
+          JobCongratCard(
+            isWorkCongrats: true,
+            profileImage: "assets/images/person_woman2.jpg",
+            name: "Tülay Yıldırım",
+            year: "5 yıl",
+            likedCount: 90,
+            commentCount: 38,
+            date: "",
+          ),
+          MyDivider(),
+          JobCongratCard(
+            isWorkCongrats: true,
+            profileImage: "assets/images/person_man1.jpg",
+            name: "Osman Demir",
+            year: "2 yıl",
+            likedCount: 12,
+            commentCount: 56,
+            date: "",
+          ),
           // tebrik kartları devam
-          _buildCongratsList(),
-          _buildCongratsList(),
         ],
-      ),
-    );
-  }
-
-  Widget _buildCongratsList() {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border(
-          bottom: BorderSide(color: Constants.horizontalDividerColor),
-        ),
-        color: Constants.mainWhiteTone,
-      ),
-      child: ListView(
-        shrinkWrap: true, // large of content
-        children: [
-          _buildCongratsCard(true, "assets/images/person_woman1.jpg", "Selda Bilici"), 
-          MyDivider(),
-          _buildCongratsCard(false, "assets/images/person_man4.jpg", "Ömer Korkusuz"), 
-          MyDivider(),
-        ]
       ),
     );
   }
@@ -91,167 +127,6 @@ class _NetworkHaberlerState extends State<NetworkHaberler> {
             MyOutlinedButton(textButton: "Eğitim"),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _buildCongratsCard(
-    final bool isWorkCongrats,
-    final String profileImage,
-    final String name,
-    ) {
-    return Container(
-      padding: Constants.paddingBigCard,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // profile picture circle avatar
-          CircleAvatar(
-            radius: 30,
-            backgroundImage: AssetImage(profileImage),
-          ),
-          SizedBox(width: 10),
-
-          // info column
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // name and more_vert row
-                Row(
-                  children: [
-                    MyText(
-                      textContent: name,
-                      textSize: Constants.fontSizeMidTitle,
-                      textWeight: FontWeight.w600,
-                      textColor: Constants.mainBlackColor,
-                    ),
-                    Spacer(),
-                    Icon(
-                      Icons.more_vert,
-                      color: Constants.mainLightGrey,
-                      size: 20,
-                    ),
-                  ],
-                ),
-                SizedBox(height: 4),
-
-                // RichText veya Text
-                isWorkCongrats
-                    ? RichText(
-                      text: TextSpan(
-                        children: [
-                          TextSpan(
-                            text: "Linkedin Türkiye",
-                            style: TextStyle(
-                              fontSize: Constants.fontSizeMidTitle,
-                              fontWeight: FontWeight.w600,
-                              color: Constants.mainBlackColor,
-                            ),
-                          ),
-                          TextSpan(
-                            text: " şirketinde 1 yılı tamamladı",
-                            style: TextStyle(
-                              fontSize: Constants.fontSizeMidTitle,
-                              fontWeight: FontWeight.w400,
-                              color: Constants.mainBlackColor,
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
-                    : MyText(
-                      textContent:
-                          "9 Tem tarihinde $name adlı kullanıcının doğum gününü kutlayın",
-                      textSize: Constants.fontSizeMidTitle,
-                      textWeight: FontWeight.w400,
-                      textColor: Constants.mainBlackColor,
-                    ),
-
-                SizedBox(height: 10),
-
-                // bottom row
-                Row(
-                  children: [
-                    // Buton
-                    Flexible(
-                      flex: 1,
-                      child: OutlinedButton.icon(
-                        onPressed: () {},
-                        icon: SizedBox(
-                          height: 16,
-                          width: 16,
-                          child: Image.asset(
-                            "assets/icons/send_light_color.png",
-                          ),
-                        ),
-                        label: MyText(
-                          textContent:
-                              isWorkCongrats
-                                  ? "Tebrikler $name"
-                                  : "Geçmiş doğum günün kutlu olsun $name",
-                          textSize: Constants.buttonTextSize,
-                          textWeight: Constants.buttonTextWeight,
-                          textColor: Constants.mainLightGrey,
-                          textOverflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ),
-
-                    // Eğer iş tebrik kartıysa like ve comment göster
-                    if (isWorkCongrats) ...[
-                      Spacer(),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 20),
-                        child: Row(
-                          children: [
-                            // like row
-                            Row(
-                              children: [
-                                SizedBox(
-                                  height: 20,
-                                  width: 20,
-                                  child: Image.asset("assets/icons/like.png"),
-                                ),
-                                SizedBox(width: 4),
-                                MyText(
-                                  textContent: "45",
-                                  textSize: Constants.fontSizeMidTitle,
-                                  textWeight: FontWeight.w400,
-                                  textColor: Constants.mainDarkGreyColor,
-                                ),
-                              ],
-                            ),
-                            SizedBox(width: 20),
-                            // comment row
-                            Row(
-                              children: [
-                                SizedBox(
-                                  height: 20,
-                                  width: 20,
-                                  child: Image.asset(
-                                    "assets/icons/comment.png",
-                                  ),
-                                ),
-                                SizedBox(width: 4),
-                                MyText(
-                                  textContent: "45",
-                                  textSize: Constants.fontSizeMidTitle,
-                                  textWeight: FontWeight.w400,
-                                  textColor: Constants.mainDarkGreyColor,
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ],
       ),
     );
   }

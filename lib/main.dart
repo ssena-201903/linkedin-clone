@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:linkedin_clone/constants/constants.dart';
 import 'package:linkedin_clone/layout/main_shell.dart';
-import 'package:linkedin_clone/views/login/login_page.dart';
-import 'package:linkedin_clone/views/profile/profile_page.dart';
 
 void main() {
   runApp(const MyApp());

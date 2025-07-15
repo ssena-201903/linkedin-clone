@@ -20,51 +20,55 @@ class _NetworkPageState extends State<NetworkPage> {
   @override
   Widget build(BuildContext context) {
     // there is tabbar so started with DefaultTabController
-    return DefaultTabController(
-      // tab count
-      length: 2,
-      child: Scaffold(
-        drawer: CustomDrawer(),
-        key: _scaffoldKey,
-        backgroundColor: Constants.bgPageColor,
-        body: NestedScrollView(
-          headerSliverBuilder:
-              (context, innerBoxIsScrolled) => [
-                // sliver appbar, will be invisible while scrolling
-                CustomSliverAppBar(
-                  onProfileTap: () {
-                    _scaffoldKey.currentState?.openDrawer();
-                  },
-                  onMessageTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => MessagesPage()),
-                    );
-                  },
-                ),
+    return SafeArea(
+      child: DefaultTabController(
+        // tab count
+        length: 2,
+        child: Scaffold(
+          drawer: CustomDrawer(),
+          key: _scaffoldKey,
+          backgroundColor: Constants.bgPageColor,
+          body: NestedScrollView(
+            headerSliverBuilder:
+                (context, innerBoxIsScrolled) => [
+                  // sliver appbar, will be invisible while scrolling
+                  CustomSliverAppBar(
+                    onProfileTap: () {
+                      _scaffoldKey.currentState?.openDrawer();
+                    },
+                    onMessageTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => MessagesPage()),
+                      );
+                    },
+                  ),
 
-                // tabbar will be sticky while scrolling
-                SliverPersistentHeader(
-                  pinned: true, // to be sticky
-                  // created tabbar and used _TabbarDelegate
-                  delegate: _TabBarDelegate(
-                    TabBar(
-                      indicatorSize: TabBarIndicatorSize.tab,
-                      labelColor: Constants.tabbarSelectedLabelColor,
-                      labelStyle: TextStyle(
-                        fontSize: Constants.tabbarFontsize,
-                        fontWeight: Constants.tabbarLabelWeight,
+                  // tabbar will be sticky while scrolling
+                  SliverPersistentHeader(
+                    pinned: true, // to be sticky
+                    // created tabbar and used _TabbarDelegate
+                    delegate: _TabBarDelegate(
+                      TabBar(
+                        indicatorSize: TabBarIndicatorSize.tab,
+                        labelColor: Constants.tabbarSelectedLabelColor,
+                        labelStyle: TextStyle(
+                          fontSize: Constants.tabbarFontsize,
+                          fontWeight: Constants.tabbarLabelWeight,
+                        ),
+                        unselectedLabelColor: Constants.mainDarkGreyColor,
+                        indicatorColor: Constants.mainGreenColor,
+                        tabs: [
+                          Tab(text: "Büyüt"),
+                          Tab(text: "Ağınızdan haberler"),
+                        ],
                       ),
-                      unselectedLabelColor: Constants.mainDarkGreyColor,
-                      indicatorColor: Constants.mainGreenColor,
-                      tabs: [
-                        Tab(text: "Büyüt"),
-                        Tab(text: "Ağınızdan haberler"),
-                      ],
                     ),
                   ),
-                ),
-              ],
-          body: TabBarView(children: [NetworkBuyut(), NetworkHaberler()]),
+                ],
+            body: SafeArea(
+              child: TabBarView(children: [NetworkBuyut(), NetworkHaberler()]),
+            ),
+          ),
         ),
       ),
     );

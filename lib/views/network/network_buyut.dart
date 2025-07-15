@@ -26,48 +26,50 @@ class _NetworkBuyutState extends State<NetworkBuyut> {
     allPersons = DataHelper.getPersons();
     // get copy from all persons list
     visiblePersons = List.from(allPersons);
-
   }
-  
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Constants.bgPageColor,
-      body: ListView(
-        children: [
-          // network requests gelecek
-          Container(
-            child: Column(
-              children: [
-                // davetler title gelecek
-                _buildSectionTitle("Davetler (2)"),
-                // davetler listesi gelecek
-                // davet kartı
-                _buildInvitationCard(
-                  "Linkedin",
-                  3,
-                  "assets/icons/linkedin_logo.png",
-                  "In the loop",
-                ),
-                _buildInvitationCard(
-                  "Hyundai",
-                  6,
-                  "assets/icons/hyundai_logo.png",
-                  "hello",
-                ),
-              ],
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Constants.bgPageColor,
+        body: ListView(
+          padding: EdgeInsets.zero, // Varsayılan padding'i kaldırır
+          children: [
+            // network requests gelecek
+            Container(
+              child: Column(
+                children: [
+                  // davetler title gelecek
+                  _buildSectionTitle("Davetler (2)"),
+                  // davetler listesi gelecek
+                  // davet kartı
+                  _buildInvitationCard(
+                    "Linkedin",
+                    3,
+                    "assets/icons/linkedin_logo.png",
+                    "In the loop",
+                  ),
+                  _buildInvitationCard(
+                    "Hyundai",
+                    6,
+                    "assets/icons/hyundai_logo.png",
+                    "hello",
+                  ),
+                ],
+              ),
             ),
-          ),
-          SizedBox(height: 8),
-          // games horizontal listview gelecek
-          _buildGames(),
-          SizedBox(height: 8),
-          // ağımı yönet gelecek
-          _buildSectionTitle("Ağımı yönet"),
-          SizedBox(height: 8),
-          // öneriler girdview gelecek
-          _buildGridContainer(allPersons),
-        ],
+            SizedBox(height: 8),
+            // games horizontal listview gelecek
+            _buildGames(),
+            SizedBox(height: 8),
+            // ağımı yönet gelecek
+            _buildSectionTitle("Ağımı yönet"),
+            SizedBox(height: 8),
+            // öneriler girdview gelecek
+            _buildGridContainer(allPersons),
+          ],
+        ),
       ),
     );
   }
@@ -389,35 +391,39 @@ class _NetworkBuyutState extends State<NetworkBuyut> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // title
           _buildTitleText(
             "Son faaliyetlerinize göre tanıyabileceğiniz kişiler",
           ),
           SizedBox(height: 10),
-          // gridview
-          GridView.builder(
-            shrinkWrap: true, // get shrinks to large of gridview
-            physics: NeverScrollableScrollPhysics(),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, // container count for each row
-              crossAxisSpacing: 10, // spacer horizontal
-              mainAxisSpacing: 10, // spacer vertical
-              childAspectRatio: 1 / 1.25, // width/height ratio
-            ),
-            itemCount: visiblePersons.length, 
-            itemBuilder: (context, index) {
-              final person = visiblePersons[index];
-              return PersonRequestCard(person: person, onClose: () {
-                setState(() {
-                  // when closed card, removed from ui
-                  visiblePersons.removeAt(index);
-                });
-              },);
+          // GridView
+          LayoutBuilder(
+            builder: (context, constraints) {
+              return GridView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                  maxCrossAxisExtent: 200, // bir kartın maksimum genişliği
+                  mainAxisSpacing: 10,
+                  crossAxisSpacing: 10,
+                  childAspectRatio: 3 / 4, // biraz daha dik kartlar
+                ),
+                itemCount: visiblePersons.length,
+                itemBuilder: (context, index) {
+                  final person = visiblePersons[index];
+                  return PersonRequestCard(
+                    person: person,
+                    onClose: () {
+                      setState(() {
+                        visiblePersons.removeAt(index);
+                      });
+                    },
+                  );
+                },
+              );
             },
           ),
         ],
       ),
     );
   }
-
 }

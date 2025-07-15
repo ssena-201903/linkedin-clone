@@ -4,6 +4,7 @@ import 'package:linkedin_clone/models/comment.dart';
 import 'package:linkedin_clone/models/person.dart';
 import 'package:linkedin_clone/models/post.dart';
 import 'package:linkedin_clone/views/home/post_detail_card.dart';
+import 'package:linkedin_clone/widgets/custom_outlined_button.dart';
 import 'package:linkedin_clone/widgets/my_text.dart';
 
 class PostDetailPage extends StatefulWidget {
@@ -55,7 +56,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
       currentUser,
     );
 
-     // run set state to update page
+    // run set state to update page
     setState(() {
       // adding comment to the list and ui
       widget.detailPost.comments.add(newComment);
@@ -67,10 +68,10 @@ class _PostDetailPageState extends State<PostDetailPage> {
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text("Yorum başarıyla eklendi!", style: TextStyle(
-            color: Constants.mainWhiteTone,
-            fontSize: 16
-          ),),
+          content: Text(
+            "Yorum başarıyla eklendi!",
+            style: TextStyle(color: Constants.mainWhiteTone, fontSize: 16),
+          ),
           duration: Duration(seconds: 2),
           behavior: SnackBarBehavior.floating,
           backgroundColor: Constants.mainGreenColor,
@@ -275,15 +276,19 @@ class _PostDetailPageState extends State<PostDetailPage> {
                           scrollDirection: Axis.horizontal,
                           child: Row(
                             children: [
-                              MyOutlinedButton(textButton: "Size katılıyorum"),
+                              CustomOutlinedButton(
+                                textButton: "Size katılıyorum",
+                              ),
                               SizedBox(width: 10),
-                              MyOutlinedButton(textButton: "Doğru söylediniz"),
+                              CustomOutlinedButton(
+                                textButton: "Doğru söylediniz",
+                              ),
                               SizedBox(width: 10),
-                              MyOutlinedButton(
+                              CustomOutlinedButton(
                                 textButton: "Çok iyi bir bakış açısı",
                               ),
                               SizedBox(width: 10),
-                              MyOutlinedButton(textButton: "Katılıyorum"),
+                              CustomOutlinedButton(textButton: "Katılıyorum"),
                               SizedBox(width: 10),
                             ],
                           ),
@@ -377,29 +382,6 @@ class _PostDetailPageState extends State<PostDetailPage> {
             ],
           ),
         ],
-      ),
-    );
-  }
-}
-
-class MyOutlinedButton extends StatelessWidget {
-  final String textButton;
-  const MyOutlinedButton({super.key, required this.textButton});
-
-  @override
-  Widget build(BuildContext context) {
-    return OutlinedButton(
-      style: OutlinedButton.styleFrom(
-        padding: EdgeInsets.symmetric(vertical: 4, horizontal: 12),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        side: BorderSide(color: Colors.black38),
-      ),
-      onPressed: () {},
-      child: MyText(
-        textContent: textButton,
-        textSize: 16,
-        textWeight: FontWeight.w600,
-        textColor: const Color.fromARGB(193, 0, 0, 0),
       ),
     );
   }
