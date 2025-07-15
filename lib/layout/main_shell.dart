@@ -17,7 +17,18 @@ class MainShell extends StatefulWidget {
 class _MainShellState extends State<MainShell> {
   int _selectedIndex = 0;
   bool _isNavbarVisible = true;
-  final ScrollController _scrollController = ScrollController();
+
+  void _handleScroll(ScrollDirection direction) {
+    if (direction == ScrollDirection.reverse && _isNavbarVisible) {
+      setState(() {
+        _isNavbarVisible = false;
+      });
+    } else if (direction == ScrollDirection.forward && !_isNavbarVisible) {
+      setState(() {
+        _isNavbarVisible = true;
+      });
+    }
+  }
 
   // pages list
   List<Widget> _pages = [];
@@ -56,34 +67,17 @@ class _MainShellState extends State<MainShell> {
   void initState() {
     super.initState();
 
-    // scroll listener
-    _scrollController.addListener(() {
-      if (_scrollController.position.userScrollDirection ==
-          ScrollDirection.reverse) {
-        if (_isNavbarVisible) {
-          setState(() {
-            _isNavbarVisible = false;
-          });
-        }
-      } else if (_scrollController.position.userScrollDirection ==
-          ScrollDirection.forward) {
-        if (!_isNavbarVisible) {
-          setState(() {
-            _isNavbarVisible = true;
-          });
-        }
-      }
-    });
-
     // defined pages
     _pages = [
-      HomePage(scrollController: _scrollController),
+      HomePage(onScroll: _handleScroll,),
       NetworkPage(),
       PublishPage(),
       NotificationsPage(),
       JobsPage(),
     ];
   }
+
+  
 
   @override
   Widget build(BuildContext context) {

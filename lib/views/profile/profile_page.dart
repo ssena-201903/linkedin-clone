@@ -86,10 +86,11 @@ class _ProfilePageState extends State<ProfilePage> {
           //_buildPosts(),
           const SizedBox(height: 20),
           // experience section
-          ExperienceSectionWidget(myExperiences: myExperiences, title: "Deneyim"),
+          // ExperienceSectionWidget(myExperiences: myExperiences, title: "Deneyim"),
           // education section
           const SizedBox(height: 20),
-          ExperienceSectionWidget(myExperiences: myEducations, title: "Eğitim"),
+          // ExperienceSectionWidget(myExperiences: myEducations, title: "Eğitim"),
+          //
         ],
       ),
     );
