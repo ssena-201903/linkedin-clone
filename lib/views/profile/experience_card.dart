@@ -36,7 +36,8 @@ class ExperienceCard extends StatelessWidget {
               MyText(textContent: experience.location, textSize: 14, textWeight: FontWeight.normal, textColor: Constants.mainLightGrey),
               const SizedBox(height: 20,),
               // gifts row
-              Row(
+              experience.explanation.isNotEmpty 
+              ? Row(
                 children: [
                   // diamond icon
                   SizedBox(height: 20, width: 20, child: Image.asset("assets/icons/diamon_icon.png"),),
@@ -46,7 +47,20 @@ class ExperienceCard extends StatelessWidget {
                     width: 230,
                     child: MyText(textContent: experience.explanation, textSize: 14, textWeight: FontWeight.bold, textColor: Constants.mainBlackColor, textOverflow: TextOverflow.ellipsis,))
                 ],
-              )
+              ) 
+              : OutlinedButton.icon(
+                iconAlignment: IconAlignment.end,
+                style: OutlinedButton.styleFrom(
+                  side: BorderSide(color: Constants.mainDarkGreyColor)
+                ),
+                onPressed: (){}, 
+                label: Text("Yeterlilik belgesini göster", style: TextStyle(
+                  color: Constants.mainBlackColor,
+                  fontWeight: Constants.buttonTextWeight,
+                  fontSize: 16
+                ),),
+                icon: SizedBox(height: 20, width: 20, child: Image.asset("assets/icons/url_icon.png"),),
+              ),
             ],
           )
         ],

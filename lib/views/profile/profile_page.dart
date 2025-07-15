@@ -3,7 +3,6 @@ import 'package:linkedin_clone/constants/constants.dart';
 import 'package:linkedin_clone/helpers/data_helper.dart';
 import 'package:linkedin_clone/models/experience.dart';
 import 'package:linkedin_clone/views/profile/dashed_border_box.dart';
-import 'package:linkedin_clone/views/profile/experience_card.dart';
 import 'package:linkedin_clone/views/profile/experience_section_widget.dart';
 import 'package:linkedin_clone/views/profile/post_profile.dart';
 import 'package:linkedin_clone/views/profile/show_all_section.dart';
@@ -23,6 +22,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   late List<Experience> myExperiences = [];
   late List<Experience> myEducations = [];
+  late List<Experience> myCertificates = [];
 
   @override
   void initState() {
@@ -30,6 +30,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
     myExperiences = DataHelper.experienceList;
     myEducations = DataHelper.educationList;
+    myCertificates = DataHelper.certicificateList;
   }
 
   @override
@@ -74,25 +75,39 @@ class _ProfilePageState extends State<ProfilePage> {
       body: ListView(
         children: [
           // profile image section
-          //_buildTitleSection(),
+          _buildTitleSection(),
           const SizedBox(height: 20),
           // views analysis section
-          //_buildAnalysis(),
+          _buildAnalysis(),
           const SizedBox(height: 20),
           // about section
-          //_buildAbout(),
+          _buildAbout(),
           const SizedBox(height: 30),
           // posts section
-          //_buildPosts(),
+          _buildPosts(),
           const SizedBox(height: 20),
           // experience section
-          // ExperienceSectionWidget(myExperiences: myExperiences, title: "Deneyim"),
+          ExperienceSectionWidget(myExperiences: myExperiences, title: "Deneyim"),
           // education section
           const SizedBox(height: 20),
-          // ExperienceSectionWidget(myExperiences: myEducations, title: "Eğitim"),
-          //
+          ExperienceSectionWidget(myExperiences: myEducations, title: "Eğitim"),
+          // sertificates
+          const SizedBox(height: 20),
+          _buildCertificates(),
+          const SizedBox(height: 20),
+
         ],
       ),
+    );
+  }
+
+  // certificates section
+  _buildCertificates() {
+    return Column(
+      children: [
+        ExperienceSectionWidget(myExperiences: myCertificates, title: "Lisanslar ve sertifikalar"),
+        ShowAllSection(text: "19 sertifikanın tümünü gör")
+      ],
     );
   }
 
@@ -695,6 +710,8 @@ class _ProfilePageState extends State<ProfilePage> {
       ],
     );
   }
+  
+  
   
   
 }

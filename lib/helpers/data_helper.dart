@@ -245,29 +245,51 @@ class DataHelper {
   ];
 
   static List<Experience> educationList = [
-  Experience(
-    "assets/images/ytu_logo.png", 
-    "Bilgisayar Mühendisliği Yüksek Lisans",
-    "Yıldız Teknik Üniversitesi",
-    "Eylül 2023",
-    "Devam ediyor",
-    "10 ay",
-    "İstanbul, Türkiye",
-    "Makine öğrenmesi, mobil sistemler +3 yetenek",
-  ),
-  Experience(
-    "assets/images/iu_logo.png", 
-    "Bilgisayar Mühendisliği Lisans",
-    "İstanbul Üniversitesi",
-    "Eylül 2017",
-    "Haziran 2021",
-    "3 yıl 10 ay",
-    "İstanbul, Türkiye",
-    "Algoritmalar, veri yapıları, yazılım mühendisliği +2 yetenek",
-  ),
-];
+    Experience(
+      "assets/images/ytu_logo.png",
+      "Bilgisayar Mühendisliği Yüksek Lisans",
+      "Yıldız Teknik Üniversitesi",
+      "Eylül 2023",
+      "Devam ediyor",
+      "10 ay",
+      "İstanbul, Türkiye",
+      "Makine öğrenmesi, mobil sistemler +3 yetenek",
+    ),
+    Experience(
+      "assets/images/iu_logo.png",
+      "Bilgisayar Mühendisliği Lisans",
+      "İstanbul Üniversitesi",
+      "Eylül 2017",
+      "Haziran 2021",
+      "3 yıl 10 ay",
+      "İstanbul, Türkiye",
+      "Algoritmalar, veri yapıları, yazılım mühendisliği +2 yetenek",
+    ),
+  ];
 
-
+  // certificates
+  static List<Experience> certicificateList = [
+    Experience(
+      "assets/images/nexora_soft.png",
+      "AI Web Summit",
+      "Nexora Soft",
+      "Yayınlama Haz 2025",
+      "",
+      "",
+      "Yeterlilik Kimliği",
+      "",
+    ),
+    Experience(
+      "assets/images/infogenix_labs.png",
+      "Data Science Day",
+      "Infogenix Labs",
+      "Yayınlama Ara 2024",
+      "",
+      "",
+      "Yeterlilik Kimliği",
+      "",
+    ),
+  ];
 
   // post list (5)
   static List<Post> getPosts() {
