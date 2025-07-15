@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:linkedin_clone/constants/constants.dart';
 import 'package:linkedin_clone/models/comment.dart';
+import 'package:linkedin_clone/models/person.dart';
 import 'package:linkedin_clone/models/post.dart';
 import 'package:linkedin_clone/views/home/post_detail_card.dart';
 import 'package:linkedin_clone/widgets/my_text.dart';
@@ -13,6 +15,77 @@ class PostDetailPage extends StatefulWidget {
 }
 
 class _PostDetailPageState extends State<PostDetailPage> {
+  bool isCommentButtonVisible = false; // is comment button visible
+  bool isCommentTextValid = false; // is user typing comment
+  // text editing controller for adding comment to the list
+  late TextEditingController tfComment;
+  // initialize a person who adds comment
+  final Person currentUser = Person(
+    "assets/images/pp_woman1.png",
+    "",
+    "Safiye Sena Merdin",
+    "Google Türkiye",
+    "Mobile Developer",
+    "",
+    "",
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    null,
+    true,
+  );
+
+  @override
+  void initState() {
+    super.initState();
+    tfComment = TextEditingController();
+  }
+
+  void _addComment() {
+    if (tfComment.text.trim().isEmpty) return;
+
+    final Comment newComment = Comment(
+      tfComment.text.trim(),
+      0,
+      0,
+      "1",
+      currentUser,
+    );
+
+     // run set state to update page
+    setState(() {
+      // adding comment to the list and ui
+      widget.detailPost.comments.add(newComment);
+      // after adding make invisible comment button
+      isCommentButtonVisible = false;
+      isCommentTextValid = false;
+      // clear controller
+      tfComment.clear();
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Yorum başarıyla eklendi!", style: TextStyle(
+            color: Constants.mainWhiteTone,
+            fontSize: 16
+          ),),
+          duration: Duration(seconds: 2),
+          behavior: SnackBarBehavior.floating,
+          backgroundColor: Constants.mainGreenColor,
+          margin: EdgeInsets.symmetric(vertical: 140, horizontal: 20),
+        ),
+      );
+    });
+  }
+
+  @override
+  void dispose() {
+    tfComment.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -169,11 +242,13 @@ class _PostDetailPageState extends State<PostDetailPage> {
                   child: ListView.builder(
                     itemCount: widget.detailPost.comments.length,
                     shrinkWrap: true,
-                    itemBuilder: (context, index){
-                      return MyCommentContainer(detailComment: widget.detailPost.comments[index]);
-                    }
+                    itemBuilder: (context, index) {
+                      return MyCommentContainer(
+                        detailComment: widget.detailPost.comments[index],
+                      );
+                    },
                   ),
-                )
+                ),
               ],
             ),
           ),
@@ -182,7 +257,6 @@ class _PostDetailPageState extends State<PostDetailPage> {
             children: [
               Expanded(
                 child: Container(
-                  
                   decoration: BoxDecoration(
                     color: Colors.white,
                     boxShadow: [
@@ -202,44 +276,97 @@ class _PostDetailPageState extends State<PostDetailPage> {
                           child: Row(
                             children: [
                               MyOutlinedButton(textButton: "Size katılıyorum"),
-                              SizedBox(width: 10,),
-                              MyOutlinedButton(textButton: "Doğru söylediniz",),
-                              SizedBox(width: 10,),
-                              MyOutlinedButton(textButton: "Çok iyi bir bakış açısı",),
-                              SizedBox(width: 10,),
-                              MyOutlinedButton(textButton: "Katılıyorum",),
-                              SizedBox(width: 10,),
+                              SizedBox(width: 10),
+                              MyOutlinedButton(textButton: "Doğru söylediniz"),
+                              SizedBox(width: 10),
+                              MyOutlinedButton(
+                                textButton: "Çok iyi bir bakış açısı",
+                              ),
+                              SizedBox(width: 10),
+                              MyOutlinedButton(textButton: "Katılıyorum"),
+                              SizedBox(width: 10),
                             ],
                           ),
                         ),
                       ),
                       // comment text field
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                        child: Row(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 10,
+                        ),
+                        child: Column(
                           children: [
-                            CircleAvatar(
-                              radius: 20,
-                              child: Image.asset("assets/images/profile_picture_placeholder.png"),
-                            ),
-                            SizedBox(width: 20,),
-                            Expanded(
-                              child: Container(
-                                alignment: Alignment.centerLeft,
-                                height: 40,
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: Colors.black12
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                CircleAvatar(
+                                  radius: 16,
+                                  backgroundImage: AssetImage(
+                                    currentUser.profilePicture,
                                   ),
-                                  borderRadius: BorderRadius.circular(20)
                                 ),
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 20),
-                                  child: MyText(textContent: "Yorum ekle...", textSize: 14, textWeight: FontWeight.w400, textColor: Colors.black54),
+                                SizedBox(width: 12),
+                                Expanded(
+                                  child: TextField(
+                                    controller: tfComment,
+                                    onChanged: (value) {
+                                      isCommentTextValid =
+                                          tfComment.text.trim().isNotEmpty;
+                                    },
+                                    onTap: () {
+                                      setState(() {
+                                        isCommentButtonVisible = true;
+                                      });
+                                    },
+                                    decoration: InputDecoration(
+                                      hintText: "Yorum ekle...",
+                                      hintStyle: TextStyle(fontSize: 14),
+                                      isDense: true,
+                                      contentPadding: EdgeInsets.symmetric(
+                                        horizontal: 12,
+                                        vertical: 10,
+                                      ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(20),
+                                        borderSide: BorderSide(
+                                          color: Colors.black12,
+                                        ),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(20),
+                                        borderSide: BorderSide(
+                                          color: Colors.black26,
+                                        ), // veya başka renk
+                                      ),
+                                    ),
+                                  ),
                                 ),
+                              ],
+                            ),
+                            const SizedBox(height: 10),
+                            Visibility(
+                              visible: isCommentButtonVisible,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  SizedBox(
+                                    height: 30,
+                                    width: 30,
+                                    child: Image.asset(
+                                      "assets/icons/picture_icon.png",
+                                    ),
+                                  ),
+                                  Spacer(),
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      isCommentTextValid ? _addComment() : null;
+                                    },
+                                    child: Text("Yorum Yap"),
+                                  ),
+                                ],
                               ),
                             ),
-                            SizedBox(width: 20,),
                           ],
                         ),
                       ),
@@ -257,21 +384,14 @@ class _PostDetailPageState extends State<PostDetailPage> {
 
 class MyOutlinedButton extends StatelessWidget {
   final String textButton;
-  const MyOutlinedButton({
-    super.key, required this.textButton,
-  });
+  const MyOutlinedButton({super.key, required this.textButton});
 
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
       style: OutlinedButton.styleFrom(
-        padding: EdgeInsets.symmetric(
-          vertical: 4,
-          horizontal: 12,
-        ),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
+        padding: EdgeInsets.symmetric(vertical: 4, horizontal: 12),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         side: BorderSide(color: Colors.black38),
       ),
       onPressed: () {},
@@ -326,7 +446,8 @@ class MyCommentContainer extends StatelessWidget {
                         ),
                         SizedBox(width: 4),
                         MyText(
-                          textContent: "${detailComment.person.connectionDegree}.",
+                          textContent:
+                              "${detailComment.person.connectionDegree}.",
                           textSize: 12,
                           textWeight: FontWeight.w400,
                           textColor: const Color.fromARGB(221, 83, 83, 83),
@@ -355,8 +476,7 @@ class MyCommentContainer extends StatelessWidget {
                 ),
                 SizedBox(height: 10),
                 MyText(
-                  textContent:
-                      detailComment.content,
+                  textContent: detailComment.content,
                   textSize: 14,
                   textWeight: FontWeight.w400,
                   textColor: Colors.black87,

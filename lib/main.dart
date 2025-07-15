@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
             backgroundColor: Constants.mainColor,
             shape: RoundedRectangleBorder(borderRadius: Constants.buttonRadius),
             padding: Constants.buttonPadding,
+            foregroundColor: Constants.mainWhiteTone
           ),
         ),
         // outlined button theme
