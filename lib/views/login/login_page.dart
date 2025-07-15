@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:linkedin_clone/constants/constants.dart';
+import 'package:linkedin_clone/views/login/loading_page.dart';
+import 'package:linkedin_clone/views/login/social_button.dart';
 import 'package:linkedin_clone/widgets/my_text.dart';
 
 class LoginPage extends StatefulWidget {
@@ -10,6 +12,11 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  bool isRememberMeChecked = true;
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +32,6 @@ class _LoginPageState extends State<LoginPage> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
-              // title, buttons, form
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -36,7 +42,6 @@ class _LoginPageState extends State<LoginPage> {
                     textColor: Constants.mainBlackColor,
                   ),
                   SizedBox(height: 10),
-                  // veya linkedinden katılın
                   RichText(
                     text: TextSpan(
                       text: "veya ",
@@ -53,94 +58,21 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  // button google
-                  Row(
-                    children: [
-                      Expanded(
-                        child: SizedBox(
-                          height: 40,
-                          child: OutlinedButton.icon(
-                            onPressed: () {},
-                            label: Text(
-                              "Google ile oturum açın",
-                              style: TextStyle(
-                                color: Constants.mainDarkGreyColor,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            icon: SizedBox(
-                              height: 20,
-                              width: 20,
-                              child: Image.asset(
-                                "assets/images/google_logo.png",
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                  SocialButton(
+                    text: "Google ile oturum açın",
+                    iconPath: "assets/images/google_logo.png",
                   ),
                   SizedBox(height: 10),
-                  // button apple
-                  Row(
-                    children: [
-                      Expanded(
-                        child: SizedBox(
-                          height: 40,
-                          child: OutlinedButton.icon(
-                            onPressed: () {},
-                            label: Text(
-                              "Apple ile oturum açın",
-                              style: TextStyle(
-                                color: Constants.mainDarkGreyColor,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            icon: SizedBox(
-                              height: 20,
-                              width: 20,
-                              child: Image.asset(
-                                "assets/images/apple_logo.png",
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                  SocialButton(
+                    text: "Apple ile oturum açın",
+                    iconPath: "assets/images/apple_logo.png",
                   ),
                   SizedBox(height: 10),
-                  // button facebook
-                  Row(
-                    children: [
-                      Expanded(
-                        child: SizedBox(
-                          height: 40,
-                          child: OutlinedButton.icon(
-                            onPressed: () {},
-                            label: Text(
-                              "Facebook ile oturum açın",
-                              style: TextStyle(
-                                color: Constants.mainDarkGreyColor,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            icon: SizedBox(
-                              height: 25,
-                              width: 25,
-                              child: Image.asset(
-                                "assets/images/facebook_logo.png",
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                  SocialButton(
+                    text: "Facebook ile oturum açın",
+                    iconPath: "assets/images/facebook_logo.png",
                   ),
                   SizedBox(height: 10),
-                  // "veya" row
                   Row(
                     children: [
                       Expanded(
@@ -155,30 +87,109 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ],
                   ),
-                  // email textfield
-                  TextField(
-                    decoration: InputDecoration(
-                      label: Text("Eposta veya Telefon"),
-                      labelStyle: TextStyle(
-                        color: Constants.mainLightGrey,
-                        fontSize: 16,
-                      ),
+                  Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        TextFormField(
+                          controller: emailController,
+                          decoration: InputDecoration(
+                            labelText: "Eposta veya Telefon",
+                          ),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Eposta ya da telefon boş olamaz';
+                            }
+                            return null;
+                          },
+                        ),
+                        SizedBox(height: 20),
+                        TextFormField(
+                          controller: passwordController,
+                          decoration: InputDecoration(
+                            labelText: "Şifre",
+                            suffixIcon: Icon(Icons.visibility),
+                          ),
+                          obscureText: true,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Şifre boş olamaz';
+                            }
+                            return null;
+                          },
+                        ),
+                        SizedBox(height: 20),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Checkbox(
+                                  activeColor: Constants.mainGreenColor,
+                                  value: isRememberMeChecked,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      isRememberMeChecked = value!;
+                                    });
+                                  },
+                                ),
+                                MyText(
+                                  textContent: "Beni hatırla",
+                                  textSize: 16,
+                                  textWeight: FontWeight.w400,
+                                  textColor: Constants.mainDarkGreyColor,
+                                ),
+                                const SizedBox(width: 10),
+                                MyText(
+                                  textContent: "Daha fazla bilgi",
+                                  textSize: 16,
+                                  textWeight: FontWeight.w600,
+                                  textColor: Constants.mainColor,
+                                ),
+                              ],
+                            ),
+
+                            TextButton(
+                              onPressed: () {},
+                              child: MyText(
+                                textContent: "Şifrenizi mi unuttunuz?",
+                                textSize: 16,
+                                textWeight: FontWeight.w400,
+                                textColor: Constants.mainColor,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 20),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  if (_formKey.currentState!.validate()) {
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder:
+                                            (context) => const LoadingPage(),
+                                      ),
+                                    );
+                                  }
+                                },
+                                child: Text(
+                                  "Devam Et",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
-                  SizedBox(height: 20),
-                  // şifre textfield
-                  TextField(
-                    decoration: InputDecoration(
-                      label: Text("Şifre"),
-                      labelStyle: TextStyle(
-                        color: Constants.mainLightGrey,
-                        fontSize: 16,
-                      ),
-                      suffixIcon: Icon(Icons.visibility),
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  // "beni hatırla" row
                 ],
               ),
             ),

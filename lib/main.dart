@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:linkedin_clone/constants/constants.dart';
 import 'package:linkedin_clone/layout/main_shell.dart';
+import 'package:linkedin_clone/views/login/login_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
             backgroundColor: Constants.mainColor,
             shape: RoundedRectangleBorder(borderRadius: Constants.buttonRadius),
             padding: Constants.buttonPadding,
-            foregroundColor: Constants.mainWhiteTone
+            foregroundColor: Constants.mainWhiteTone,
           ),
         ),
         // outlined button theme
@@ -45,7 +46,7 @@ class MyApp extends StatelessWidget {
           foregroundColor: Colors.white,
         ),
       ),
-      home: MainShell(),
+      home: LoginPage(),
     );
   }
 }
