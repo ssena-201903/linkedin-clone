@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 class Constants {
   // app main color
-  static final mainColor = Color(0xff0966C3);
-  static final mainWhiteTone = Colors.white;
-  static final bgPageColor = Color(0xffE9E6DE);
-  static final mainGreenColor = Color(0xff017550);
-  static final mainLightGrey = Color.fromARGB(255, 131, 131, 131);
-  static final mainDarkGreyColor = const Color.fromARGB(255, 104, 104, 104);
-  static final mainBlackColor = Color(0xff181818);
-  static final mainLigthGreenColor = Color(0xffD8E9CF);
+  static final Color mainColor = Color(0xff0966C3);
+  static final Color mainWhiteTone = Colors.white;
+  static final Color bgPageColor = Color(0xffE9E6DE);
+  static final Color mainGreenColor = Color(0xff017550);
+  static final Color mainLightGrey = Color.fromARGB(255, 131, 131, 131);
+  static final Color mainDarkGreyColor = const Color.fromARGB(255, 104, 104, 104);
+  static final Color mainBlackColor = Color(0xff181818);
+  static final Color mainLigthGreenColor = Color(0xffD8E9CF);
 
   // fontsizes
   static final double fontSizeTitle = 20;
