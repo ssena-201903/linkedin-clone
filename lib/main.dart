@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:linkedin_clone/constants/constants.dart';
 import 'package:linkedin_clone/layout/main_shell.dart';
+import 'package:linkedin_clone/views/jobs/jobs_page.dart';
 import 'package:linkedin_clone/views/login/login_page.dart';
 import 'package:linkedin_clone/views/messages/messages_page.dart';
 import 'package:linkedin_clone/views/register/register_page.dart';
@@ -49,7 +50,7 @@ class MyApp extends StatelessWidget {
           foregroundColor: Colors.white,
         ),
       ),
-      home: LoginPage(),
+      home: JobsPage(),
     );
   }
 }
