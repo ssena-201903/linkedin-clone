@@ -12,21 +12,27 @@ class JobsTopContainer extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 16),
       width: double.infinity,
       height: 60,
-      child: Row(
-        children: [
-          SizedBox(
-            height: 40,
-            child: CustomOutlinedButton(textButton: "Tercihler")),
-          const SizedBox(width: 10),
-          SizedBox(
-            height: 40,
-            child: CustomOutlinedButton(textButton: "İş İlanlarım")),
-          const SizedBox(width: 10),
-          SizedBox(
-            height: 40,
-            child: CustomOutlinedButton(textButton: "Ücretsiz iş ilanı ver")),
-        ],
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: [
+            SizedBox(
+              height: 40,
+              child: CustomOutlinedButton(textButton: "Tercihler"),
+            ),
+            const SizedBox(width: 10),
+            SizedBox(
+              height: 40,
+              child: CustomOutlinedButton(textButton: "İş İlanlarım"),
+            ),
+            const SizedBox(width: 10),
+            SizedBox(
+              height: 40,
+              child: CustomOutlinedButton(textButton: "Ücretsiz iş ilanı ver"),
+            ),
+          ],
+        ),
       ),
-    );          
+    );
   }
 }

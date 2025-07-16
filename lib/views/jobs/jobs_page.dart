@@ -23,6 +23,7 @@ class _JobsPageState extends State<JobsPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        key: _scaffoldKey,
         backgroundColor: Constants.bgPageColor,
         // Drawer
         drawer: CustomDrawer(),
@@ -64,7 +65,8 @@ class _JobsPageState extends State<JobsPage> {
                         MyJobCard(
                           companyLogo: "assets/images/nexora_soft.png",
                           jobTitle: "Yazılım Mühendisi",
-                          jobLocation: "Kadıköy, İstanbul, Türkiye (İş yerinde)",
+                          jobLocation:
+                              "Kadıköy, İstanbul, Türkiye (İş yerinde)",
                           isNew: true,
                           isEasyApply: true,
                           time: "1 saat önce",
@@ -90,7 +92,7 @@ class _JobsPageState extends State<JobsPage> {
                           time: "",
                           companyName: "Infogenix Labs",
                         ),
-                        ShowAllSection(text: "Tümünü gör")
+                        ShowAllSection(text: "Tümünü gör"),
                       ],
                     ),
                   ),
@@ -99,34 +101,34 @@ class _JobsPageState extends State<JobsPage> {
                   SearchItem(),
                   const SizedBox(height: 8),
                   MyJobCard(
-                          companyLogo: "assets/images/nexora_soft.png",
-                          jobTitle: "Yazılım Mühendisi",
-                          jobLocation: "Kadıköy, İstanbul, Türkiye (İş yerinde)",
-                          isNew: true,
-                          isEasyApply: true,
-                          time: "1 saat önce",
-                          companyName: "Nexora Soft",
-                        ),
-                        MyDivider(),
-                        MyJobCard(
-                          companyLogo: "assets/images/devix_solutions.png",
-                          jobTitle: "Finansal Analist",
-                          jobLocation: "Beşiktaş, İstanbul, Türkiye (Hibrit)",
-                          isNew: false,
-                          isEasyApply: false,
-                          time: "2 saat önce",
-                          companyName: "Devix Solutions",
-                        ),
-                        MyDivider(),
-                        MyJobCard(
-                          companyLogo: "assets/images/infogenix_labs.png",
-                          jobTitle: "Veri Bilimci",
-                          jobLocation: "Şişli, İstanbul, Türkiye (Uzaktan)",
-                          isNew: true,
-                          isEasyApply: true,
-                          time: "",
-                          companyName: "Infogenix Labs",
-                        ),
+                    companyLogo: "assets/images/nexora_soft.png",
+                    jobTitle: "Yazılım Mühendisi",
+                    jobLocation: "Kadıköy, İstanbul, Türkiye (İş yerinde)",
+                    isNew: true,
+                    isEasyApply: true,
+                    time: "1 saat önce",
+                    companyName: "Nexora Soft",
+                  ),
+                  MyDivider(),
+                  MyJobCard(
+                    companyLogo: "assets/images/devix_solutions.png",
+                    jobTitle: "Finansal Analist",
+                    jobLocation: "Beşiktaş, İstanbul, Türkiye (Hibrit)",
+                    isNew: false,
+                    isEasyApply: false,
+                    time: "2 saat önce",
+                    companyName: "Devix Solutions",
+                  ),
+                  MyDivider(),
+                  MyJobCard(
+                    companyLogo: "assets/images/infogenix_labs.png",
+                    jobTitle: "Veri Bilimci",
+                    jobLocation: "Şişli, İstanbul, Türkiye (Uzaktan)",
+                    isNew: true,
+                    isEasyApply: true,
+                    time: "",
+                    companyName: "Infogenix Labs",
+                  ),
                 ],
               ),
             ),
@@ -138,9 +140,7 @@ class _JobsPageState extends State<JobsPage> {
 }
 
 class SearchItem extends StatelessWidget {
-  const SearchItem({
-    super.key,
-  });
+  const SearchItem({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -156,12 +156,16 @@ class SearchItem extends StatelessWidget {
             children: [
               MainTitleContainer(
                 title: "En son yapılan aramalar",
-                subtitle:
-                    "",
+                subtitle: "",
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 8, right: 8),
-                child: MyText(textContent: "Temizle", textSize: 14, textWeight: FontWeight.w600, textColor: Constants.mainDarkGreyColor),
+                child: MyText(
+                  textContent: "Temizle",
+                  textSize: 14,
+                  textWeight: FontWeight.w600,
+                  textColor: Constants.mainDarkGreyColor,
+                ),
               ),
             ],
           ),
@@ -171,17 +175,31 @@ class SearchItem extends StatelessWidget {
               // job search item
               Row(
                 children: [
-                  MyText(textContent: "Mobile developer", textSize: 14, textWeight: FontWeight.w600, textColor: Constants.mainBlackColor),
+                  MyText(
+                    textContent: "Mobile developer",
+                    textSize: 14,
+                    textWeight: FontWeight.w600,
+                    textColor: Constants.mainBlackColor,
+                  ),
                   const SizedBox(width: 8),
-                  MyText(textContent: "59 yeni", textSize: 12, textWeight: FontWeight.w600, textColor: Constants.mainGreenColor),
+                  MyText(
+                    textContent: "59 yeni",
+                    textSize: 12,
+                    textWeight: FontWeight.w600,
+                    textColor: Constants.mainGreenColor,
+                  ),
                 ],
               ),
               const SizedBox(height: 4),
               // alert item
-              MyText(textContent: "Uyarı Açık · Türkiye", textSize: 14, textWeight: FontWeight.w400, textColor: Constants.mainLightGrey),
+              MyText(
+                textContent: "Uyarı Açık · Türkiye",
+                textSize: 14,
+                textWeight: FontWeight.w400,
+                textColor: Constants.mainLightGrey,
+              ),
             ],
-          )
-          
+          ),
         ],
       ),
     );
@@ -198,7 +216,14 @@ class MyJobCard extends StatelessWidget {
   final String time;
 
   const MyJobCard({
-    super.key, required this.companyLogo, required this.jobTitle, required this.jobLocation, required this.isNew, required this.isEasyApply, required this.time, required this.companyName,
+    super.key,
+    required this.companyLogo,
+    required this.jobTitle,
+    required this.jobLocation,
+    required this.isNew,
+    required this.isEasyApply,
+    required this.time,
+    required this.companyName,
   });
 
   @override
@@ -216,14 +241,11 @@ class MyJobCard extends StatelessWidget {
               child: SizedBox(
                 width: 50,
                 height: 50,
-                child: Image.asset(
-                  companyLogo,
-                  fit: BoxFit.cover,
-                ),
+                child: Image.asset(companyLogo, fit: BoxFit.cover),
               ),
             ),
             const SizedBox(width: 12),
-      
+
             // right side
             Expanded(
               child: Column(
@@ -231,8 +253,7 @@ class MyJobCard extends StatelessWidget {
                 children: [
                   // top row with job title and close icon
                   Row(
-                    mainAxisAlignment:
-                        MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       // job title
                       MyText(
@@ -259,57 +280,71 @@ class MyJobCard extends StatelessWidget {
                   ),
                   // company and location
                   MyText(
-                    textContent:
-                        jobLocation,
+                    textContent: jobLocation,
                     textSize: 14,
                     textWeight: FontWeight.w400,
                     textColor: Constants.mainLightGrey,
                   ),
                   const SizedBox(height: 8),
-      
+
                   // status
-                  isNew ? 
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: const [
-                      Icon(
-                        Icons.check_circle,
-                        size: 16,
-                        color: Colors.green,
-                      ),
-                      SizedBox(width: 4),
-                      MyText(textContent: "Başvurular aktif olarak inceleniyor", textSize: 12, textWeight: FontWeight.w400, textColor: Colors.black54),
-                    ],
-                  ) : 
-                  const SizedBox(),
-                  const SizedBox(height: 8),
-                  isEasyApply ?
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      MyText(textContent: "Öne çıkarılan içerik", textSize: 12, textWeight: FontWeight.w400, textColor: Colors.black54),
-                      const SizedBox(width: 8),
-                      // easy apply icon and text
-                      Row(
-                        children: [
-                          SizedBox(
-                            height: 16,
-                            width: 16,
-                            child: Image.asset(
-                              "assets/icons/linkedin_logo_small.png",
-                              fit: BoxFit.cover,
-                            ),
+                  isNew
+                      ? Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: const [
+                          Icon(
+                            Icons.check_circle,
+                            size: 16,
+                            color: Colors.green,
                           ),
                           SizedBox(width: 4),
-                          Text(
-                            "Kolay Başvuru",
-                            style: TextStyle(fontSize: 13),
+                          MyText(
+                            textContent: "Başvurular aktif olarak inceleniyor",
+                            textSize: 12,
+                            textWeight: FontWeight.w400,
+                            textColor: Colors.black54,
                           ),
                         ],
+                      )
+                      : const SizedBox(),
+                  const SizedBox(height: 8),
+                  isEasyApply
+                      ? Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          MyText(
+                            textContent: "Öne çıkarılan içerik",
+                            textSize: 12,
+                            textWeight: FontWeight.w400,
+                            textColor: Colors.black54,
+                          ),
+                          const SizedBox(width: 8),
+                          // easy apply icon and text
+                          Row(
+                            children: [
+                              SizedBox(
+                                height: 16,
+                                width: 16,
+                                child: Image.asset(
+                                  "assets/icons/linkedin_logo_small.png",
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              SizedBox(width: 4),
+                              Text(
+                                "Kolay Başvuru",
+                                style: TextStyle(fontSize: 13),
+                              ),
+                            ],
+                          ),
+                        ],
+                      )
+                      : MyText(
+                        textContent: "$time saat önce",
+                        textSize: 12,
+                        textWeight: FontWeight.w600,
+                        textColor: Constants.mainGreenColor,
                       ),
-                    ],
-                  ): 
-                  MyText(textContent: "$time saat önce", textSize: 12, textWeight: FontWeight.w600, textColor: Constants.mainGreenColor),
                 ],
               ),
             ),
